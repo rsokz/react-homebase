@@ -1,8 +1,8 @@
-const graphql = require('graphql');
-const { GraphQLSchema } = graphql;
+import { GraphQLSchema } from "graphql";
+import RootQueryType from "./types/root_query_type";
 
-const RootQueryType = require('./types/root_query_type');
-
-module.exports = new GraphQLSchema({
+const Schema = new GraphQLSchema({
   query: RootQueryType
 });
+
+export default Schema;
