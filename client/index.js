@@ -1,7 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import ApolloClient, { InMemoryCache } from "apollo-boost";
+import ApolloClient, { InMemoryCache, HttpLink } from "apollo-boost";
 import { ApolloProvider } from "react-apollo";
 
 import App from "./components/App";
@@ -9,10 +9,12 @@ import App from "./components/App";
 const cache = new InMemoryCache({
   dataIdFromObject: o => o.id
 });
-
-const client = new ApolloClient({
-  cache
+const link = new HttpLink({
+  uri: "/graphql",
+  credentials: "same-origin"
 });
+
+const client = new ApolloClient();
 
 const Root = () => {
   return (
