@@ -1,16 +1,25 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import ApolloClient from "apollo-client";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import ApolloClient, { InMemoryCache } from "apollo-boost";
 import { ApolloProvider } from "react-apollo";
 
-const client = new ApolloClient({
+import App from "./components/App";
+
+const cache = new InMemoryCache({
   dataIdFromObject: o => o.id
+});
+
+const client = new ApolloClient({
+  cache
 });
 
 const Root = () => {
   return (
     <ApolloProvider client={client}>
-      <div>Auth Starter</div>
+      <Router>
+        <Route path="/" component={App} />
+      </Router>
     </ApolloProvider>
   );
 };
