@@ -11,7 +11,10 @@ module.exports = {
     rules: [
       {
         use: "babel-loader",
-        test: /\.js$/,
+        test: /\.jsx?$/,
+        resolve: {
+          extensions: [".js", ".jsx"]
+        },
         exclude: /node_modules/
       }
     ]
