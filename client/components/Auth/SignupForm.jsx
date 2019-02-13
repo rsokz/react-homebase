@@ -2,40 +2,73 @@ import React from "react";
 import styled from "styled-components";
 import { TextField, Button } from "@material-ui/core";
 
-const SignupForm = props => {
-  return (
-    <Form noValidate autoComplete="off">
-      <TextField
-        id="standard-name"
-        label="First Name"
-        // value={this.state.name}
-        // onChange={this.handleChange('name')}
-        margin="normal"
-        fullWidth
-      />
-      <TextField
-        id="standard-email-input"
-        label="Email"
-        type="email"
-        name="email"
-        autoComplete="email"
-        margin="normal"
-        fullWidth
-      />
-      <TextField
-        id="standard-password-input"
-        label="Password"
-        type="password"
-        autoComplete="current-password"
-        margin="normal"
-        fullWidth
-      />
-      <StyledButton variant="contained" fullWidth>
-        Sign Up
-      </StyledButton>
-    </Form>
-  );
-};
+class Signupform extends React.PureComponent {
+  state = {
+    email: "",
+    name: "",
+    pass: ""
+  };
+
+  render() {
+    const { email, name, pass } = this.state;
+    return (
+      <Form noValidate autoComplete="off">
+        <TextField
+          id="standard-name"
+          label="First Name"
+          margin="normal"
+          fullWidth
+          value={name}
+          onChange={this.handleNameChange}
+        />
+        <TextField
+          id="standard-email-input"
+          label="Email"
+          type="email"
+          name="email"
+          autoComplete="email"
+          margin="normal"
+          fullWidth
+          value={email}
+          onChange={this.handleEmailChange}
+        />
+        <TextField
+          id="standard-password-input"
+          label="Password"
+          type="password"
+          autoComplete="current-password"
+          margin="normal"
+          fullWidth
+          value={pass}
+          onChange={this.handlePassChange}
+        />
+        <StyledButton variant="contained" fullWidth>
+          Sign Up
+        </StyledButton>
+        <Typography
+          variant="button"
+          gutterBottom
+          color="error"
+          style={{ height: 10, marginTop: 20 }}
+        >
+          {errors}
+        </Typography>
+      </Form>
+    );
+  }
+
+  handleEmailChange = e => {
+    this.setState({ email: e.target.value });
+  };
+
+  handleNameChange = e => {
+    this.setState({ name: e.target.value });
+  };
+
+  handlePassChange = e => {
+    this.setState({ pass: e.target.value });
+  };
+}
 
 const Btn = styled(Button)`
   margintop: 50;
@@ -60,7 +93,5 @@ const Form = styled.form`
   padding: 0px 50px;
   padding-top: 10px;
 `;
-
-const TxtField = styled(TextField)``;
 
 export default SignupForm;

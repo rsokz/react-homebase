@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { TextField, Button } from "@material-ui/core";
+import { TextField, Button, Typography } from "@material-ui/core";
 
 class LoginForm extends React.PureComponent {
   state = {
@@ -10,6 +10,7 @@ class LoginForm extends React.PureComponent {
 
   render() {
     const { email, pass } = this.state;
+    const { errors } = this.props;
     return (
       <Form noValidate autoComplete="off" onSubmit={this.handleLogin}>
         <TextField
@@ -36,6 +37,14 @@ class LoginForm extends React.PureComponent {
         <StyledButton type="submit" variant="contained" fullWidth>
           Login
         </StyledButton>
+        <Typography
+          variant="button"
+          gutterBottom
+          color="error"
+          style={{ height: 10, marginTop: 20 }}
+        >
+          {errors}
+        </Typography>
       </Form>
     );
   }

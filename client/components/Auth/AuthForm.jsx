@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { withStyles } from "@material-ui/core/styles";
 import { Paper, Tabs, Tab } from "@material-ui/core";
 import loginMutation from "../../mutations/Login";
+import currentUserQuery from "../../queries/CurrentUser";
 import { graphql } from "react-apollo";
 
 import LoginForm from "./LoginForm";
@@ -19,13 +20,13 @@ const styles = theme => ({
 
 class AuthForm extends React.Component {
   state = {
+    errors: [],
     tabIndex: 0
   };
 
   render() {
-    const { tabIndex } = this.state;
+    const { errors, tabIndex } = this.state;
     const { classes } = this.props;
-    console.log(this.state);
     return (
       <StyledPaper square>
         <StyledTabs
@@ -38,7 +39,9 @@ class AuthForm extends React.Component {
           <Tab classes={{ label: classes.label }} label="Login" />
           <Tab classes={{ label: classes.label }} label="Sign Up" />
         </StyledTabs>
-        {tabIndex === 0 && <LoginForm onLogin={this.handleLogin} />}
+        {tabIndex === 0 && (
+          <LoginForm onLogin={this.handleLogin} errors={errors} />
+        )}
         {tabIndex === 1 && <SignupForm />}
       </StyledPaper>
     );
@@ -46,10 +49,19 @@ class AuthForm extends React.Component {
 
   handleLogin = (email, password) => {
     const { mutate } = this.props;
-    mutate({ variables: { email, password } });
+    this.setState({ errors: [] });
+    mutate({
+      variables: { email, password },
+      refetchQueries: [{ query: currentUserQuery }]
+    }).catch(res => {
+      const errors = res.graphQLErrors.map(err => {
+        return err.message;
+      });
+      this.setState({ errors });
+    });
   };
 
-  handleTabChange = (event, tabIndex) => {
+  handleTabChange = (_, tabIndex) => {
     this.setState({ tabIndex });
   };
 }
@@ -63,7 +75,7 @@ const StyledTabs = styled(Tabs)`
 `;
 
 const StyledPaper = styled(Paper)`
-  padding-bottom: 40px;
+  padding-bottom: 10px;
   width: 450;
 `;
 // const AuthForm = () => {
