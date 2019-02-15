@@ -1,8 +1,8 @@
 import React from "react";
 import styled from "styled-components";
-import { TextField, Button } from "@material-ui/core";
+import { TextField, Button, Typography } from "@material-ui/core";
 
-class Signupform extends React.PureComponent {
+class SignupForm extends React.PureComponent {
   state = {
     email: "",
     name: "",
@@ -11,8 +11,9 @@ class Signupform extends React.PureComponent {
 
   render() {
     const { email, name, pass } = this.state;
+    const { errors } = this.props;
     return (
-      <Form noValidate autoComplete="off">
+      <Form noValidate autoComplete="off" onSubmit={this.handleSignup}>
         <TextField
           id="standard-name"
           label="First Name"
@@ -42,7 +43,7 @@ class Signupform extends React.PureComponent {
           value={pass}
           onChange={this.handlePassChange}
         />
-        <StyledButton variant="contained" fullWidth>
+        <StyledButton type="submit" variant="contained" fullWidth>
           Sign Up
         </StyledButton>
         <Typography
@@ -67,6 +68,13 @@ class Signupform extends React.PureComponent {
 
   handlePassChange = e => {
     this.setState({ pass: e.target.value });
+  };
+
+  handleSignup = e => {
+    const { onSignup } = this.props;
+    const { email, pass, name } = this.state;
+    e.preventDefault();
+    onSignup(email, pass, name);
   };
 }
 

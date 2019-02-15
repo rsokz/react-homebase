@@ -1,6 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { BrowserRouter as Router } from "react-router-dom";
 import ApolloClient, { InMemoryCache, HttpLink } from "apollo-boost";
 import { ApolloProvider } from "react-apollo";
 
@@ -20,7 +20,7 @@ const Root = () => {
   return (
     <ApolloProvider client={client}>
       <Router>
-        <Route path="/" component={App} />
+        <App />
       </Router>
     </ApolloProvider>
   );

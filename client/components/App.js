@@ -1,22 +1,19 @@
 import React from "react";
-import Header from "./Header";
+import { Route, Switch } from "react-router-dom";
+// components
 import AuthForm from "./Auth/AuthForm";
-import { Grid } from "@material-ui/core";
+import ProtectedRoute from "./Protected.Route";
+import Dashboard from "./Dashboard";
+import PublicRoute from "./Public.Route";
 
-const App = props => {
+const App = () => {
   return (
-    <div>
-      {/* <Header /> */}
-      <Grid
-        style={{ minHeight: "100vh" }}
-        container
-        direction="column"
-        justify="center"
-        alignItems="center"
-      >
-        <AuthForm />
-      </Grid>
-      {props.children}
+    <div className="App">
+      <Switch>
+        <PublicRoute exact path="/login" component={AuthForm} />
+        <ProtectedRoute exact path="/" component={Dashboard} />
+        <Route path="*" component={() => "404 NOT FOUND"} />
+      </Switch>
     </div>
   );
 };

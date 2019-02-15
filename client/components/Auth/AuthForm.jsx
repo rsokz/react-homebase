@@ -1,10 +1,12 @@
 import React, { useState } from "React";
 import styled from "styled-components";
 import { withStyles } from "@material-ui/core/styles";
-import { Paper, Tabs, Tab } from "@material-ui/core";
+import { Paper, Tabs, Tab, Grid } from "@material-ui/core";
 import loginMutation from "../../mutations/Login";
+import signupMutation from "../../mutations/Signup";
 import currentUserQuery from "../../queries/CurrentUser";
-import { graphql } from "react-apollo";
+import { graphql, compose } from "react-apollo";
+import { Redirect } from "react-router-dom";
 
 import LoginForm from "./LoginForm";
 import SignupForm from "./SignupForm";
@@ -24,41 +26,79 @@ class AuthForm extends React.Component {
     tabIndex: 0
   };
 
+  // componentDidMount() {
+  //   const { loading, user, history } = this.props.data;
+  //   if (!loading && user) {
+  //     <Redirect to={‌{ pathname: '/' }}
+  //   }
+  // }
+
   render() {
     const { errors, tabIndex } = this.state;
     const { classes } = this.props;
     return (
-      <StyledPaper square>
-        <StyledTabs
-          classes={{ indicator: classes.indicator }}
-          value={tabIndex}
-          onChange={this.handleTabChange}
-          indicatorColor="primary"
-          variant="fullWidth"
-        >
-          <Tab classes={{ label: classes.label }} label="Login" />
-          <Tab classes={{ label: classes.label }} label="Sign Up" />
-        </StyledTabs>
-        {tabIndex === 0 && (
-          <LoginForm onLogin={this.handleLogin} errors={errors} />
-        )}
-        {tabIndex === 1 && <SignupForm />}
-      </StyledPaper>
+      <Grid
+        style={{ minHeight: "100vh" }}
+        container
+        direction="column"
+        justify="center"
+        alignItems="center"
+      >
+        <StyledPaper square>
+          <StyledTabs
+            classes={{ indicator: classes.indicator }}
+            value={tabIndex}
+            onChange={this.handleTabChange}
+            indicatorColor="primary"
+            variant="fullWidth"
+          >
+            <Tab classes={{ label: classes.label }} label="Login" />
+            <Tab classes={{ label: classes.label }} label="Sign Up" />
+          </StyledTabs>
+          {tabIndex === 0 && (
+            <LoginForm onLogin={this.handleLogin} errors={errors} />
+          )}
+          {tabIndex === 1 && (
+            <SignupForm onSignup={this.handleSignup} errors={errors} />
+          )}
+        </StyledPaper>
+      </Grid>
     );
   }
 
   handleLogin = (email, password) => {
-    const { mutate } = this.props;
+    const { loginMutation } = this.props;
     this.setState({ errors: [] });
-    mutate({
+    loginMutation({
       variables: { email, password },
-      refetchQueries: [{ query: currentUserQuery }]
-    }).catch(res => {
-      const errors = res.graphQLErrors.map(err => {
-        return err.message;
+      refetchQueries: [{ query: currentUserQuery }],
+      awaitRefetchQueries: true,
+      onCompleted: () => this.props.history.push("/")
+    })
+      // .then(() => this.props.history.push("/"))
+      .catch(res => {
+        const errors = res.graphQLErrors.map(err => {
+          return err.message;
+        });
+        this.setState({ errors });
       });
-      this.setState({ errors });
-    });
+  };
+
+  handleSignup = (email, password, name) => {
+    const { signupMutation } = this.props;
+    this.setState({ errors: [] });
+    signupMutation({
+      variables: { email, password, name },
+      refetchQueries: [{ query: currentUserQuery }],
+      awaitRefetchQueries: true
+    })
+      .then(() => this.props.history.push("/dashboard"))
+      .catch(res => {
+        const errors = res.graphQLErrors.map(err => {
+          return err.message;
+        });
+        this.setState({ errors });
+      });
   };
 
   handleTabChange = (_, tabIndex) => {
@@ -96,4 +136,8 @@ const StyledPaper = styled(Paper)`
 //   );
 // };
 
-export default graphql(loginMutation)(withStyles(styles)(AuthForm));
+export default compose(
+  graphql(loginMutation, { name: "loginMutation" }),
+  graphql(signupMutation, { name: "signupMutation" }),
+  graphql(currentUserQuery)
+)(withStyles(styles)(AuthForm));
