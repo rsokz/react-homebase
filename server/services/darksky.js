@@ -24,7 +24,7 @@ import { IconType } from "./type";
 export const getWeatherCurrently = async () => {
   try {
     // build request URL
-    const URL = `https://api.darksky.net/forecast/${Config.DARKSKY_API_KEY}/${
+    const URL = `https://api.darksky.net/forecast/0419e269e05054dd9b44ed9ef4ee2137/${
       coords.lat
     },${coords.lng}`;
 

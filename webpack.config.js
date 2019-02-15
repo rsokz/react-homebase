@@ -13,10 +13,12 @@ module.exports = {
         use: "babel-loader",
         test: /\.jsx?$/,
         resolve: {
-          extensions: [".js", ".jsx"]
+          extensions: [".ts", ".tsx", ".js", ".jsx", ".json"]
         },
         exclude: /node_modules/
-      }
+      },
+      // rnts3
+      { test: /\.tsx?$/, loader: "awesome-typescript-loader" }
     ]
   },
   plugins: [
