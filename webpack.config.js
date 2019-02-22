@@ -1,5 +1,8 @@
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const styledComponentsTransformer = require('typescript-plugin-styled-components').default;
+const { CheckerPlugin } = require('awesome-typescript-loader');
+const path = require('path');
 
 module.exports = {
   entry: './client/index.js',
@@ -7,14 +10,16 @@ module.exports = {
     path: '/',
     filename: 'bundle.js'
   },
+  resolve: {
+    extensions: ['.ts', '.tsx', '.mjs', '.js', '.jsx']
+  },
+  devtool: 'source-map',
   module: {
     rules: [
       {
-        use: 'babel-loader',
         test: /\.jsx?$/,
-        resolve: {
-          extensions: ['.ts', '.tsx', '.js', '.jsx', '.json']
-        },
+        use: 'babel-loader',
+        enforce: 'pre',
         exclude: /node_modules/
       },
       {
@@ -22,13 +27,15 @@ module.exports = {
         loader: 'awesome-typescript-loader',
         options: {
           getCustomTransformers: () => ({ before: [styledComponentsTransformer] })
-        }
+        },
+        exclude: /node_modules/
       }
     ]
   },
   plugins: [
     new HtmlWebpackPlugin({
       template: 'client/index.html'
-    })
+    }),
+    new CheckerPlugin()
   ]
 };

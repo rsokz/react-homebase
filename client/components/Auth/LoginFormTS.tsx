@@ -5,14 +5,14 @@ import {
   Button,
   Typography,
   WithStyles,
-  withStyles,
-  createStyles
+  createStyles,
+  withStyles
 } from '@material-ui/core';
 import AuthenticateButton from './AuthenticateButton';
 
 const styles = createStyles({
   button: {
-    background: 'linear - gradient(45deg, #fe6b8b 30 %, #ff8e53 90 %)',
+    background: 'linear - gradient(45deg, #fe6b8b 3%, #ff8e53 90%)',
     borderRadius: '3px',
     border: 0,
     color: 'white',
@@ -42,6 +42,7 @@ class LoginFormTS extends React.PureComponent<Props, State> {
   public render() {
     const { email, pass } = this.state;
     const { errors, classes } = this.props;
+    console.log(this.props);
     return (
       <Form noValidate autoComplete="off" onSubmit={this.handleLogin}>
         <TextField
@@ -116,4 +117,4 @@ const Form = styled.form`
   padding-top: 20px;
 `;
 
-export default LoginFormTS;
+export default withStyles(styles)(LoginFormTS);

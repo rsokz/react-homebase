@@ -9,7 +9,7 @@
     "downlevelIteration": true,
     "resolveJsonModule": true,
     "target": "es5",
-    "jsx": "preserve",
+    "jsx": "react",
     "lib": ["es2017", "dom", "esnext.asynciterable"],
     "typeRoots": ["node_modules/@types"],
     "allowJs": true,
@@ -23,6 +23,14 @@
     "strict": false,
     "module": "esnext"
   },
+  "awesomeTypescriptLoaderOptions": {
+    "useCache": true,
+    "useWebpackText": true,
+    "useTranspileModule": true,
+    "doTypeCheck": true,
+    "forkChecker": true
+  },
+  "files": ["node_modules/typescript/lib/lib.es6.d.ts"],
   "include": ["client/**/*", "server/**/*"],
   "exclude": ["node_modules"],
   "plugins": [

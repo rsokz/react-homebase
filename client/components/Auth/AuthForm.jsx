@@ -1,15 +1,18 @@
+/* eslint-disable react/sort-comp */
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import { withStyles } from '@material-ui/core/styles';
 import { Paper, Tabs, Tab, Grid } from '@material-ui/core';
-import loginMutation from '../../mutations/Login';
-import signupMutation from '../../mutations/Signup';
-import currentUserQuery from '../../queries/CurrentUser';
 import { graphql, compose } from 'react-apollo';
-import { Redirect } from 'react-router-dom';
+import loginMutation from '../../graphql/mutations/Login';
+import signupMutation from '../../graphql/mutations/Signup';
+// import * as query from '../../graphql/queries';
+import currentUserQuery from '../../graphql/queries/currentUser';
 
-import LoginForm from './LoginForm';
-// import LoginFormTS from "./LoginFormTS";
+// import { Redirect } from 'react-router-dom';
+
+// import LoginForm from './LoginForm';
+import LoginFormTS from './LoginFormTS';
 import SignupForm from './SignupForm';
 
 const styles = theme => ({
@@ -26,13 +29,6 @@ class AuthForm extends React.Component {
     errors: [],
     tabIndex: 0
   };
-
-  // componentDidMount() {
-  //   const { loading, user, history } = this.props.data;
-  //   if (!loading && user) {
-  //     <Redirect to={‌{ pathname: '/' }}
-  //   }
-  // }
 
   render() {
     const { errors, tabIndex } = this.state;
@@ -57,8 +53,8 @@ class AuthForm extends React.Component {
             <Tab classes={{ label: classes.label }} label="Sign Up" />
           </StyledTabs>
           {tabIndex === 0 && (
-            <LoginForm onLogin={this.handleLogin} errors={errors} />
-            // <LoginFormTS />
+            // <LoginForm onLogin={this.handleLogin} errors={errors} />
+            <LoginFormTS onLogin={this.handleLogin} errors={errors} />
           )}
           {tabIndex === 1 && <SignupForm onSignup={this.handleSignup} errors={errors} />}
         </StyledPaper>
@@ -118,23 +114,6 @@ const StyledPaper = styled(Paper)`
   padding-bottom: 10px;
   width: 450;
 `;
-// const AuthForm = () => {
-//   const [value, setValue] = useState(1);
-
-//   return (
-//     <Paper square>
-//       <Tabs
-//         value={value}
-//         indicatorColor="primary"
-//         textColor="primary"
-//         onChange={() => setValue(value)}
-//       >
-//         <Tab label="Active" />
-//         <Tab label="Active" />
-//       </Tabs>
-//     </Paper>
-//   );
-// };
 
 export default compose(
   graphql(loginMutation, { name: 'loginMutation' }),
