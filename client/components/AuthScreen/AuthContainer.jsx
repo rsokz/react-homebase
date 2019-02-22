@@ -7,7 +7,7 @@ import { graphql, compose } from 'react-apollo';
 import loginMutation from '../../graphql/mutations/Login';
 import signupMutation from '../../graphql/mutations/Signup';
 import * as query from '../../graphql/queries';
-import LoginFormTS from './LoginFormTS';
+import LoginForm from './LoginForm';
 import SignupForm from './SignupForm';
 
 const styles = theme => ({
@@ -49,7 +49,7 @@ class AuthForm extends React.Component {
           </StyledTabs>
           {tabIndex === 0 && (
             // <LoginForm onLogin={this.handleLogin} errors={errors} />
-            <LoginFormTS onLogin={this.handleLogin} errors={errors} />
+            <LoginForm onLogin={this.handleLogin} errors={errors} />
           )}
           {tabIndex === 1 && <SignupForm onSignup={this.handleSignup} errors={errors} />}
         </StyledPaper>
@@ -83,7 +83,7 @@ class AuthForm extends React.Component {
       refetchQueries: [{ query: query.currentUser }],
       awaitRefetchQueries: true
     })
-      .then(() => this.props.history.push('/dashboard'))
+      .then(() => this.props.history.push('/'))
       .catch(res => {
         const errors = res.graphQLErrors.map(err => {
           return err.message;
@@ -113,5 +113,5 @@ const StyledPaper = styled(Paper)`
 export default compose(
   graphql(loginMutation, { name: 'loginMutation' }),
   graphql(signupMutation, { name: 'signupMutation' }),
-  graphql(currentUserQuery)
+  graphql(query.currentUser)
 )(withStyles(styles)(AuthForm));

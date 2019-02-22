@@ -1,2 +1,2 @@
-import * as User from './User';
-export { User };
+import * as CurrentUser from './CurrentUser';
+export { CurrentUser };

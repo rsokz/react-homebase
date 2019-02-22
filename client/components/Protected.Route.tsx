@@ -1,7 +1,8 @@
 import * as React from 'react';
 import { Route, Redirect, RouteProps } from 'react-router-dom';
-import { Query } from 'react-apollo';
 import * as query from '../graphql/queries';
+import { CurrentUser } from '../graphql/types';
+import { Query } from 'react-apollo';
 
 interface ProtectedRouteProps extends RouteProps {
   component: React.ComponentType<RouteProps>;
@@ -11,7 +12,7 @@ const ProtectedRoute = ({ component: Component, ...rest }: ProtectedRouteProps) 
   <Route
     {...rest}
     render={props => {
-      <Query query={query.currentUser}>
+      <Query<CurrentUser.Data> query={query.currentUser}>
         {({ loading, data: { currentUser } }) => {
           if (loading) return null;
           if (currentUser) {
