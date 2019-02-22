@@ -8,7 +8,7 @@
   },
   "main": "index.js",
   "scripts": {
-    "dev": "nodemon index.js --ignore client"
+    "dev": "nodemon index.js --ignore client --history-api-fallback"
   },
   "author": "",
   "license": "ISC",
@@ -20,6 +20,7 @@
     "@types/prop-types": "^15.5.9",
     "@types/react": "^16.8.3",
     "@types/react-dom": "^16.8.1",
+    "@types/styled-components": "^4.1.10",
     "apollo-boost": "^0.1.27",
     "awesome-typescript-loader": "^5.2.1",
     "axios": "^0.18.0",
@@ -50,10 +51,19 @@
     "@babel/core": "^7.0.0",
     "@babel/plugin-proposal-class-properties": "^7.3.0",
     "@babel/plugin-transform-react-jsx": "^7.3.0",
-    "eslint": "^4.19.1",
+    "babel-eslint": "^10.0.1",
+    "babel-preset-airbnb": "^3.2.0",
+    "eslint": "^5.6.0",
     "eslint-config-airbnb": "^17.1.0",
+    "eslint-config-prettier": "^4.0.0",
+    "eslint-config-react-app": "^3.0.7",
+    "eslint-plugin-flowtype": "^2.50.3",
     "eslint-plugin-import": "^2.16.0",
     "eslint-plugin-jsx-a11y": "^6.2.1",
-    "eslint-plugin-react": "^7.12.4"
+    "eslint-plugin-prettier": "^3.0.1",
+    "eslint-plugin-react": "^7.12.4",
+    "eslint-plugin-react-hooks": "^1.2.0",
+    "prettier": "^1.16.4",
+    "typescript-plugin-styled-components": "^1.2.0"
   }
 }

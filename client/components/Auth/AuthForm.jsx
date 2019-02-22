@@ -1,22 +1,23 @@
-import React, { useState } from "React";
-import styled from "styled-components";
-import { withStyles } from "@material-ui/core/styles";
-import { Paper, Tabs, Tab, Grid } from "@material-ui/core";
-import loginMutation from "../../mutations/Login";
-import signupMutation from "../../mutations/Signup";
-import currentUserQuery from "../../queries/CurrentUser";
-import { graphql, compose } from "react-apollo";
-import { Redirect } from "react-router-dom";
+import React, { useState } from 'react';
+import styled from 'styled-components';
+import { withStyles } from '@material-ui/core/styles';
+import { Paper, Tabs, Tab, Grid } from '@material-ui/core';
+import loginMutation from '../../mutations/Login';
+import signupMutation from '../../mutations/Signup';
+import currentUserQuery from '../../queries/CurrentUser';
+import { graphql, compose } from 'react-apollo';
+import { Redirect } from 'react-router-dom';
 
-import LoginForm from "./LoginForm";
-import SignupForm from "./SignupForm";
+import LoginForm from './LoginForm';
+// import LoginFormTS from "./LoginFormTS";
+import SignupForm from './SignupForm';
 
 const styles = theme => ({
   indicator: {
-    backgroundColor: "white"
+    backgroundColor: 'white'
   },
   label: {
-    color: "white"
+    color: 'white'
   }
 });
 
@@ -38,7 +39,7 @@ class AuthForm extends React.Component {
     const { classes } = this.props;
     return (
       <Grid
-        style={{ minHeight: "100vh" }}
+        style={{ minHeight: '100vh' }}
         container
         direction="column"
         justify="center"
@@ -57,10 +58,9 @@ class AuthForm extends React.Component {
           </StyledTabs>
           {tabIndex === 0 && (
             <LoginForm onLogin={this.handleLogin} errors={errors} />
+            // <LoginFormTS />
           )}
-          {tabIndex === 1 && (
-            <SignupForm onSignup={this.handleSignup} errors={errors} />
-          )}
+          {tabIndex === 1 && <SignupForm onSignup={this.handleSignup} errors={errors} />}
         </StyledPaper>
       </Grid>
     );
@@ -73,7 +73,7 @@ class AuthForm extends React.Component {
       variables: { email, password },
       refetchQueries: [{ query: currentUserQuery }],
       awaitRefetchQueries: true,
-      onCompleted: () => this.props.history.push("/")
+      onCompleted: () => this.props.history.push('/')
     })
       // .then(() => this.props.history.push("/"))
       .catch(res => {
@@ -92,7 +92,7 @@ class AuthForm extends React.Component {
       refetchQueries: [{ query: currentUserQuery }],
       awaitRefetchQueries: true
     })
-      .then(() => this.props.history.push("/dashboard"))
+      .then(() => this.props.history.push('/dashboard'))
       .catch(res => {
         const errors = res.graphQLErrors.map(err => {
           return err.message;
@@ -137,7 +137,7 @@ const StyledPaper = styled(Paper)`
 // };
 
 export default compose(
-  graphql(loginMutation, { name: "loginMutation" }),
-  graphql(signupMutation, { name: "signupMutation" }),
+  graphql(loginMutation, { name: 'loginMutation' }),
+  graphql(signupMutation, { name: 'signupMutation' }),
   graphql(currentUserQuery)
 )(withStyles(styles)(AuthForm));
