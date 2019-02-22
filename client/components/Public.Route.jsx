@@ -1,8 +1,7 @@
 import React from 'react';
 import { Route, Redirect } from 'react-router-dom';
 import { graphql } from 'react-apollo';
-import currentUserQuery from '../graphql/queries/currentUser';
-// import * as query from '../graphql/queries/currentUser.query';
+import * as query from '../graphql/queries/currentUser.query';
 
 const PublicRoute = ({ component: Component, data: { currentUser, loading }, ...rest }) => (
   <Route
@@ -27,4 +26,4 @@ const PublicRoute = ({ component: Component, data: { currentUser, loading }, ...
   />
 );
 
-export default graphql(currentUserQuery)(PublicRoute);
+export default graphql(query.currentUser)(PublicRoute);

@@ -6,12 +6,7 @@ import { Paper, Tabs, Tab, Grid } from '@material-ui/core';
 import { graphql, compose } from 'react-apollo';
 import loginMutation from '../../graphql/mutations/Login';
 import signupMutation from '../../graphql/mutations/Signup';
-// import * as query from '../../graphql/queries';
-import currentUserQuery from '../../graphql/queries/currentUser';
-
-// import { Redirect } from 'react-router-dom';
-
-// import LoginForm from './LoginForm';
+import * as query from '../../graphql/queries';
 import LoginFormTS from './LoginFormTS';
 import SignupForm from './SignupForm';
 
@@ -67,7 +62,7 @@ class AuthForm extends React.Component {
     this.setState({ errors: [] });
     loginMutation({
       variables: { email, password },
-      refetchQueries: [{ query: currentUserQuery }],
+      refetchQueries: [{ query: query.currentUser }],
       awaitRefetchQueries: true,
       onCompleted: () => this.props.history.push('/')
     })
@@ -85,7 +80,7 @@ class AuthForm extends React.Component {
     this.setState({ errors: [] });
     signupMutation({
       variables: { email, password, name },
-      refetchQueries: [{ query: currentUserQuery }],
+      refetchQueries: [{ query: query.currentUser }],
       awaitRefetchQueries: true
     })
       .then(() => this.props.history.push('/dashboard'))
