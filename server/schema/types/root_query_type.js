@@ -1,14 +1,14 @@
-const graphql = require("graphql");
+const graphql = require('graphql');
 const { GraphQLObjectType, GraphQLID } = graphql;
-const UserTpe = require("./user-type");
+const UserTpe = require('./user-type');
 
 const RootQueryType = new GraphQLObjectType({
-  name: "RootQueryType",
+  name: 'RootQueryType',
   // GraphQL expects at least one field for every type
   fields: {
     currentUser: {
       type: UserTpe,
-      resolve(parentsValue, args, req) {
+      resolve(_, _, req) {
         return req.user;
       }
     }
