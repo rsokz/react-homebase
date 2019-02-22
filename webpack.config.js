@@ -2,7 +2,6 @@ const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const styledComponentsTransformer = require('typescript-plugin-styled-components').default;
 const { CheckerPlugin } = require('awesome-typescript-loader');
-const path = require('path');
 
 module.exports = {
   entry: './client/index.js',
