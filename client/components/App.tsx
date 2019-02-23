@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Switch } from 'react-router-dom';
+import { Switch, Route } from 'react-router-dom';
 // components
 import AuthScreen from './AuthScreen';
 import ProtectedRoute from './Protected.Route';
@@ -12,7 +12,7 @@ const App = () => {
       <Switch>
         <ProtectedRoute exact path="/" component={Dashboard} />
         <PublicRoute path="/login" component={AuthScreen} />
-        {/* <Route path="*" component={() => '404 NOT FOUND'} /> */}
+        <Route path="*" component={() => <div>404 NOT FOUND</div>} />
       </Switch>
     </div>
   );
