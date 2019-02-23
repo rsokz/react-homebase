@@ -17,33 +17,46 @@ const styles = createStyles({
 });
 
 interface Props extends WithStyles<typeof styles> {
-  onSignIn: (email: string, pass: string) => void;
+  onSignUp: (email: string, password: string, name: string) => void;
   errors: string[];
 }
 
-export default withStyles(styles)(({ classes, errors, onSignIn }: Props) => {
+export default withStyles(styles)(({ classes, errors, onSignUp }: Props) => {
   const [email, setEmail] = useState('');
+  const [name, setName] = useState('');
   const [password, setPassword] = useState('');
 
-  const maySignIn = () => {
-    return !!(email && password);
+  const maySignUp = () => {
+    return !!(email && password && name);
   };
 
-  const handleEmailChange = ({ target }) => {
-    setEmail(target.value);
+  const handleEmailChange = e => {
+    setEmail(e.target.value);
+  };
+
+  const handleNameChange = e => {
+    setName(e.target.value);
   };
 
   const handlePassChange = e => {
     setPassword(e.target.value);
   };
 
-  const handleLogin = e => {
+  const handleSignup = e => {
     e.preventDefault();
-    onSignIn(email, password);
+    onSignUp(email, password, name);
   };
 
   return (
-    <form className={classes.form} noValidate autoComplete="off" onSubmit={handleLogin}>
+    <form noValidate autoComplete="off" onSubmit={handleSignup}>
+      <TextField
+        id="standard-name"
+        label="First Name"
+        margin="normal"
+        fullWidth
+        value={name}
+        onChange={handleNameChange}
+      />
       <TextField
         id="standard-email-input"
         label="Email"
@@ -65,7 +78,7 @@ export default withStyles(styles)(({ classes, errors, onSignIn }: Props) => {
         value={password}
         onChange={handlePassChange}
       />
-      <AuthenticateButton disabled={!maySignIn()}>Login</AuthenticateButton>
+      <AuthenticateButton disabled={!maySignUp()}>Sign Up</AuthenticateButton>
       <Typography className={classes.typography} variant="button" gutterBottom color="error">
         {errors}
       </Typography>

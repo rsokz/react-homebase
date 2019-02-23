@@ -77,7 +77,7 @@ export default withStyles(styles)(({ classes, history }: Props) => {
             >
               {login => (
                 <SignInForm
-                  onLogin={(email, password) => {
+                  onSignIn={(email, password) => {
                     setErrors([]);
                     login({
                       variables: { email, password },
@@ -98,7 +98,7 @@ export default withStyles(styles)(({ classes, history }: Props) => {
             >
               {signup => (
                 <SignUpForm
-                  onSignup={(email, password, name) => {
+                  onSignUp={(email, password, name) => {
                     setErrors([]);
                     signup({
                       variables: { email, password, name },
