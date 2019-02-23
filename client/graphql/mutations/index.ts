@@ -1,3 +1,3 @@
-export { default as login } from './login.mutation';
-export { default as logout } from './logout.mutation';
-export { default as signup } from './signup.mutation';
+export { default as logIn } from './logIn.mutation';
+export { default as logOut } from './logOut.mutation';
+export { default as signUp } from './signUp.mutation';

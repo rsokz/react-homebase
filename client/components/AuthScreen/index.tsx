@@ -5,8 +5,8 @@ import { Paper, Tabs, Tab, Grid, WithStyles, withStyles, createStyles } from '@m
 import { Mutation } from 'react-apollo';
 import * as mutation from '../../graphql/mutations';
 import * as query from '../../graphql/queries';
-import LoginForm from './LoginForm';
-import SignupForm from './SignupForm';
+import SignInForm from './SignInForm';
+import SignUpForm from './SignUpForm';
 
 const styles = createStyles({
   grid: {
@@ -71,12 +71,12 @@ export default withStyles(styles)(({ classes, history }: Props) => {
           </Tabs>
           {tabIndex === 0 && (
             <Mutation
-              mutation={mutation.login}
+              mutation={mutation.logIn}
               onCompleted={() => history.push('/')}
               onError={handleMutationError}
             >
               {login => (
-                <LoginForm
+                <SignInForm
                   onLogin={(email, password) => {
                     setErrors([]);
                     login({
@@ -92,12 +92,12 @@ export default withStyles(styles)(({ classes, history }: Props) => {
           )}
           {tabIndex === 1 && (
             <Mutation
-              mutation={mutation.signup}
+              mutation={mutation.signUp}
               onCompleted={() => history.push('/')}
               onError={handleMutationError}
             >
               {signup => (
-                <SignupForm
+                <SignUpForm
                   onSignup={(email, password, name) => {
                     setErrors([]);
                     signup({
