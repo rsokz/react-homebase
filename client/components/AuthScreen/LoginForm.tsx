@@ -28,7 +28,6 @@ class LoginForm extends React.PureComponent<Props, State> {
   public render() {
     const { email, pass } = this.state;
     const { errors, classes } = this.props;
-    console.log(this.props);
     return (
       <Form noValidate autoComplete="off" onSubmit={this.handleLogin}>
         <TextField

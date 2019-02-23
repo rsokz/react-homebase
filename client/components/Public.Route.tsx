@@ -1,7 +1,8 @@
 import * as React from 'react';
 import { Route, Redirect, RouteProps } from 'react-router-dom';
 import * as query from '../graphql/queries';
-import { CurrentUserQuery } from '../graphql/types';
+import { CurrentUser } from '../graphql/types';
+import { Query } from 'react-apollo';
 
 interface PublicRouteProps extends RouteProps {
   component: React.ComponentType<RouteProps>;
@@ -11,7 +12,7 @@ const PublicRoute = ({ component: Component, ...rest }: PublicRouteProps) => (
   <Route
     {...rest}
     render={props => {
-      <CurrentUserQuery query={query.currentUser}>
+      <Query<CurrentUser.Data> query={query.currentUser}>
         {({ loading, data: { currentUser } }) => {
           if (loading) return null;
           if (currentUser) {
@@ -27,7 +28,7 @@ const PublicRoute = ({ component: Component, ...rest }: PublicRouteProps) => (
             );
           }
         }}
-      </CurrentUserQuery>;
+      </Query>;
       return <Component {...props} />;
     }}
   />

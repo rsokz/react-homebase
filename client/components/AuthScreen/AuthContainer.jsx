@@ -4,9 +4,9 @@ import styled from 'styled-components';
 import { withStyles } from '@material-ui/core/styles';
 import { Paper, Tabs, Tab, Grid } from '@material-ui/core';
 import { graphql, compose } from 'react-apollo';
-import loginMutation from '../../graphql/mutations/Login';
-import signupMutation from '../../graphql/mutations/Signup';
+import * as mutation from '../../graphql/mutations';
 import * as query from '../../graphql/queries';
+
 import LoginForm from './LoginForm';
 import SignupForm from './SignupForm';
 
@@ -62,9 +62,15 @@ class AuthForm extends React.Component {
     this.setState({ errors: [] });
     loginMutation({
       variables: { email, password },
-      refetchQueries: [{ query: query.currentUser }],
-      awaitRefetchQueries: true,
+      // refetchQueries: [{ query: query.currentUser }],
+      // awaitRefetchQueries: true,
       onCompleted: () => this.props.history.push('/')
+      // onError: res => {
+      //   const errors = res.graphQLErrors.map(err => {
+      //     return err.message;
+      //   });
+      //   this.setState({ errors });
+      // }
     })
       // .then(() => this.props.history.push("/"))
       .catch(res => {
@@ -111,7 +117,7 @@ const StyledPaper = styled(Paper)`
 `;
 
 export default compose(
-  graphql(loginMutation, { name: 'loginMutation' }),
-  graphql(signupMutation, { name: 'signupMutation' }),
+  graphql(mutation.login, { name: 'loginMutation' }),
+  graphql(mutation.signup, { name: 'signupMutation' }),
   graphql(query.currentUser)
 )(withStyles(styles)(AuthForm));
