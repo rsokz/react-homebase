@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
-import { withRouter, RouteComponentProps } from 'react-router';
-import styled from 'styled-components';
+import { RouteComponentProps } from 'react-router';
 import { Paper, Tabs, Tab, Grid, WithStyles, withStyles, createStyles } from '@material-ui/core';
-import { graphql, compose, Query, Mutation } from 'react-apollo';
+import { Mutation } from 'react-apollo';
 import * as mutation from '../../graphql/mutations';
 import * as query from '../../graphql/queries';
 import LoginForm from './LoginForm';
