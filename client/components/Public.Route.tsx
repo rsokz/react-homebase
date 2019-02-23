@@ -12,24 +12,26 @@ const PublicRoute = ({ component: Component, ...rest }: PublicRouteProps) => (
   <Route
     {...rest}
     render={props => {
-      <Query<CurrentUser.Data> query={query.currentUser}>
-        {({ loading, data: { currentUser } }) => {
-          if (loading) return null;
-          if (currentUser) {
-            return (
-              <Redirect
-                to={{
-                  pathname: '/',
-                  state: {
-                    from: props.location
-                  }
-                }}
-              />
-            );
-          }
-        }}
-      </Query>;
-      return <Component {...props} />;
+      return (
+        <Query<CurrentUser.Data> query={query.currentUser}>
+          {({ loading, data: { currentUser } }) => {
+            if (loading) return null;
+            if (currentUser) {
+              return (
+                <Redirect
+                  to={{
+                    pathname: '/',
+                    state: {
+                      from: props.location
+                    }
+                  }}
+                />
+              );
+            }
+            return <Component {...props} />;
+          }}
+        </Query>
+      );
     }}
   />
 );

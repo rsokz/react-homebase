@@ -12,23 +12,25 @@ const ProtectedRoute = ({ component: Component, ...rest }: ProtectedRouteProps) 
   <Route
     {...rest}
     render={props => {
-      <Query<CurrentUser.Data> query={query.currentUser}>
-        {({ loading, data: { currentUser } }) => {
-          if (loading) return null;
-          if (currentUser) {
-            return <Component {...props} />;
-          }
-        }}
-      </Query>;
       return (
-        <Redirect
-          to={{
-            pathname: '/login',
-            state: {
-              from: props.location
+        <Query<CurrentUser.Data> query={query.currentUser}>
+          {({ loading, data: { currentUser } }) => {
+            if (loading) return null;
+            if (currentUser) {
+              return <Component {...props} />;
             }
+            return (
+              <Redirect
+                to={{
+                  pathname: '/login',
+                  state: {
+                    from: props.location
+                  }
+                }}
+              />
+            );
           }}
-        />
+        </Query>
       );
     }}
   />

@@ -9,6 +9,25 @@ import {
   withStyles
 } from '@material-ui/core';
 
+const styles = createStyles({
+  button: {
+    background: 'linear-gradient(45deg, #fe6b8b 3%, #ff8e53 90%)',
+    borderRadius: '3px',
+    border: 0,
+    color: 'white',
+    height: '48px',
+    padding: '0 30px',
+    boxShadow: '0 3px 5px 2px rgba(255, 105, 135, 0.3)',
+    marginTop: '40px'
+  },
+  form: {
+    display: 'flex',
+    flexWrap: 'wrap',
+    padding: '0px 50px',
+    paddingTop: '20px'
+  }
+});
+
 interface Props extends WithStyles<typeof styles> {
   onLogin: (email: string, pass: string) => void;
   errors: string[];
@@ -29,7 +48,7 @@ class LoginForm extends React.PureComponent<Props, State> {
     const { email, pass } = this.state;
     const { errors, classes } = this.props;
     return (
-      <Form noValidate autoComplete="off" onSubmit={this.handleLogin}>
+      <form className={classes.form} noValidate autoComplete="off" onSubmit={this.handleLogin}>
         <TextField
           id="standard-email-input"
           label="Email"
@@ -62,7 +81,7 @@ class LoginForm extends React.PureComponent<Props, State> {
         >
           {errors}
         </Typography>
-      </Form>
+      </form>
     );
   }
 
@@ -81,25 +100,5 @@ class LoginForm extends React.PureComponent<Props, State> {
     onLogin(email, pass);
   };
 }
-
-const styles = createStyles({
-  button: {
-    background: 'linear - gradient(45deg, #fe6b8b 3%, #ff8e53 90%)',
-    borderRadius: '3px',
-    border: 0,
-    color: 'white',
-    height: '48px',
-    padding: '0 30px',
-    boxShadow: '0 3px 5px 2px rgba(255, 105, 135, 0.3)',
-    marginTop: '40px'
-  }
-});
-
-const Form = styled.form`
-  display: 'flex';
-  flexwrap: 'wrap';
-  padding: 0px 50px;
-  padding-top: 20px;
-`;
 
 export default withStyles(styles)(LoginForm);
