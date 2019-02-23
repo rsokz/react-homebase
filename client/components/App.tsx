@@ -12,7 +12,7 @@ const App = () => {
       <Switch>
         <ProtectedRoute exact path="/" component={Dashboard} />
         <PublicRoute path="/login" component={AuthScreen} />
-        <Route path="*" component={() => <div>404 NOT FOUND</div>} />
+        <Route path="*" component={() => <h1>404 NOT FOUND</h1>} />
       </Switch>
     </div>
   );

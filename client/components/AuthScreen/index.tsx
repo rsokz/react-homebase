@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import * as React from 'react';
+import { useState } from 'react';
 import { RouteComponentProps } from 'react-router';
 import { Paper, Tabs, Tab, Grid, WithStyles, withStyles, createStyles } from '@material-ui/core';
 import { Mutation } from 'react-apollo';
@@ -8,6 +9,9 @@ import LoginForm from './LoginForm';
 import SignupForm from './SignupForm';
 
 const styles = createStyles({
+  grid: {
+    minHeight: '100vh'
+  },
   indicator: {
     backgroundColor: 'white'
   },
@@ -16,7 +20,7 @@ const styles = createStyles({
   },
   paper: {
     paddingBottom: '10px',
-    width: '450px'
+    height: '50%'
   },
   tabs: {
     background: 'linear-gradient(45deg, #fe6b8b 3%, #ff8e53 90%)',
@@ -44,65 +48,68 @@ export default withStyles(styles)(({ classes, history }: Props) => {
 
   return (
     <Grid
-      style={{ minHeight: '100vh' }}
+      className={classes.grid}
       container
-      direction="column"
+      direction="row"
       justify="center"
       alignItems="center"
+      spacing={40}
     >
-      <Paper className={classes.paper} square>
-        <Tabs
-          className={classes.tabs}
-          classes={{ indicator: classes.indicator }}
-          value={tabIndex}
-          onChange={handleTabChange}
-          indicatorColor="primary"
-          variant="fullWidth"
-        >
-          <Tab classes={{ label: classes.label }} label="Login" />
-          <Tab classes={{ label: classes.label }} label="Sign Up" />
-        </Tabs>
-        {tabIndex === 0 && (
-          <Mutation
-            mutation={mutation.login}
-            onCompleted={() => history.push('/')}
-            onError={handleMutationError}
+      <Grid item xs={6}>
+        <Paper className={classes.paper} square>
+          <Tabs
+            className={classes.tabs}
+            classes={{ indicator: classes.indicator }}
+            value={tabIndex}
+            onChange={handleTabChange}
+            indicatorColor="primary"
+            variant="fullWidth"
           >
-            {login => (
-              <LoginForm
-                onLogin={(email, password) => {
-                  login({
-                    variables: { email, password },
-                    refetchQueries: [{ query: query.currentUser }],
-                    awaitRefetchQueries: true
-                  });
-                }}
-                errors={errors}
-              />
-            )}
-          </Mutation>
-        )}
-        {tabIndex === 1 && (
-          <Mutation
-            mutation={mutation.signup}
-            onCompleted={() => history.push('/')}
-            onError={this.handleMutationError}
-          >
-            {signup => (
-              <SignupForm
-                onSignup={(email, password, name) =>
-                  signup({
-                    variables: { email, password, name },
-                    refetchQueries: [{ query: query.currentUser }],
-                    awaitRefetchQueries: true
-                  })
-                }
-                errors={errors}
-              />
-            )}
-          </Mutation>
-        )}
-      </Paper>
+            <Tab classes={{ label: classes.label }} label="Login" />
+            <Tab classes={{ label: classes.label }} label="Sign Up" />
+          </Tabs>
+          {tabIndex === 0 && (
+            <Mutation
+              mutation={mutation.login}
+              onCompleted={() => history.push('/')}
+              onError={handleMutationError}
+            >
+              {login => (
+                <LoginForm
+                  onLogin={(email, password) => {
+                    login({
+                      variables: { email, password },
+                      refetchQueries: [{ query: query.currentUser }],
+                      awaitRefetchQueries: true
+                    });
+                  }}
+                  errors={errors}
+                />
+              )}
+            </Mutation>
+          )}
+          {tabIndex === 1 && (
+            <Mutation
+              mutation={mutation.signup}
+              onCompleted={() => history.push('/')}
+              onError={handleMutationError}
+            >
+              {signup => (
+                <SignupForm
+                  onSignup={(email, password, name) =>
+                    signup({
+                      variables: { email, password, name },
+                      refetchQueries: [{ query: query.currentUser }],
+                      awaitRefetchQueries: true
+                    })
+                  }
+                  errors={errors}
+                />
+              )}
+            </Mutation>
+          )}
+        </Paper>
+      </Grid>
     </Grid>
   );
 });
