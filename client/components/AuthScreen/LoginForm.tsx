@@ -17,8 +17,11 @@ const styles = createStyles({
     color: 'white',
     height: '48px',
     padding: '0 30px',
-    boxShadow: '0 3px 5px 2px rgba(255, 105, 135, 0.3)',
+    boxShadow: '0 1px 5px 2px rgba(255, 105, 135, 0.3)',
     marginTop: '50px'
+  },
+  buttonDisabled: {
+    background: '#d4c9d7'
   },
   form: {
     display: 'flex',
@@ -82,7 +85,7 @@ export default withStyles(styles)(({ classes, errors, onLogin }: Props) => {
         onChange={handlePassChange}
       />
       <Button
-        className={classes.button}
+        classes={{ root: classes.button, disabled: classes.buttonDisabled }}
         type="submit"
         disabled={!maySignIn()}
         variant="contained"

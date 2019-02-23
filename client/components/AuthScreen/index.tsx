@@ -43,6 +43,7 @@ export default withStyles(styles)(({ classes, history }: Props) => {
   };
 
   const handleTabChange = (_, tabIndex) => {
+    setErrors([]);
     setTabIndex(tabIndex);
   };
 
@@ -77,6 +78,7 @@ export default withStyles(styles)(({ classes, history }: Props) => {
               {login => (
                 <LoginForm
                   onLogin={(email, password) => {
+                    setErrors([]);
                     login({
                       variables: { email, password },
                       refetchQueries: [{ query: query.currentUser }],
@@ -96,13 +98,14 @@ export default withStyles(styles)(({ classes, history }: Props) => {
             >
               {signup => (
                 <SignupForm
-                  onSignup={(email, password, name) =>
+                  onSignup={(email, password, name) => {
+                    setErrors([]);
                     signup({
                       variables: { email, password, name },
                       refetchQueries: [{ query: query.currentUser }],
                       awaitRefetchQueries: true
-                    })
-                  }
+                    });
+                  }}
                   errors={errors}
                 />
               )}
