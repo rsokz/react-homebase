@@ -10,8 +10,7 @@ const styles = createStyles({
     color: 'white',
     height: '48px',
     padding: '0 30px',
-    boxShadow: '0 1px 5px 2px rgba(255, 105, 135, 0.3)',
-    marginTop: '50px'
+    boxShadow: '0 1px 5px 2px rgba(255, 105, 135, 0.3)'
   },
   buttonDisabled: {
     background: '#d4c9d7'

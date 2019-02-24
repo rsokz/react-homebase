@@ -7,8 +7,7 @@ const styles = createStyles({
   form: {
     display: 'flex',
     flexWrap: 'wrap',
-    padding: '0px 50px',
-    paddingTop: '5%'
+    padding: '2% 50px 0px'
   },
   typography: {
     height: '10px',
@@ -48,7 +47,7 @@ export default withStyles(styles)(({ classes, errors, onSignUp }: Props) => {
   };
 
   return (
-    <form noValidate autoComplete="off" onSubmit={handleSignup}>
+    <form className={classes.form} noValidate autoComplete="off" onSubmit={handleSignup}>
       <TextField
         id="standard-name"
         label="First Name"
@@ -78,7 +77,9 @@ export default withStyles(styles)(({ classes, errors, onSignUp }: Props) => {
         value={password}
         onChange={handlePassChange}
       />
-      <AuthenticateButton disabled={!maySignUp()}>Sign Up</AuthenticateButton>
+      <AuthenticateButton style={{ marginTop: 39 }} disabled={!maySignUp()}>
+        Sign Up
+      </AuthenticateButton>
       <Typography className={classes.typography} variant="button" gutterBottom color="error">
         {errors}
       </Typography>

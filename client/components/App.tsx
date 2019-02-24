@@ -3,14 +3,14 @@ import { Switch, Route } from 'react-router-dom';
 // components
 import AuthScreen from './AuthScreen';
 import ProtectedRoute from './Protected.Route';
-import Dashboard from './DashboardScreen/Dashboard';
+import DashboardScreen from './DashboardScreen';
 import PublicRoute from './Public.Route';
 
 const App = () => {
   return (
     <div className="App">
       <Switch>
-        <ProtectedRoute exact path="/" component={Dashboard} />
+        <ProtectedRoute exact path="/" component={DashboardScreen} />
         <PublicRoute path="/login" component={AuthScreen} />
         <Route path="*" component={() => <h1>404 NOT FOUND</h1>} />
       </Switch>

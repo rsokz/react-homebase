@@ -7,8 +7,7 @@ const styles = createStyles({
   form: {
     display: 'flex',
     flexWrap: 'wrap',
-    padding: '0px 50px',
-    paddingTop: '5%'
+    padding: '3% 50px 0px'
   },
   typography: {
     height: '10px',
@@ -65,7 +64,9 @@ export default withStyles(styles)(({ classes, errors, onSignIn }: Props) => {
         value={password}
         onChange={handlePassChange}
       />
-      <AuthenticateButton disabled={!maySignIn()}>Login</AuthenticateButton>
+      <AuthenticateButton style={{ marginTop: 55 }} disabled={!maySignIn()}>
+        Login
+      </AuthenticateButton>
       <Typography className={classes.typography} variant="button" gutterBottom color="error">
         {errors}
       </Typography>
