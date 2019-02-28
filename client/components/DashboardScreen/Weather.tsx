@@ -1,7 +1,8 @@
 import * as React from 'react';
 import classNames from 'classnames';
 import { Typography, Theme, withStyles, WithStyles, createStyles } from '@material-ui/core';
-import { WeatherCurrently } from '../AuthScreen/utils/weather';
+import * as Type from '../../graphql/types';
+import { getIcon } from './utils/weather';
 
 const styles = (theme: Theme) =>
   createStyles({
@@ -28,19 +29,22 @@ const styles = (theme: Theme) =>
   });
 
 interface Props extends WithStyles<typeof styles> {
-  weather: WeatherCurrently;
+  weather: Type.Weather.Data['weather'];
 }
 
-export default withStyles(styles)(({ classes }: Props) => (
-  <div className={classes.weather}>
-    <Typography className={classes.weatherDegrees} variant="h2">
-      70 °F
-    </Typography>
-    <div className={classes.weatherInfo}>
-      <i className={classNames(classes.icon, 'wi wi-day-sunny')} />
-      <Typography className={classes.weatherDescription} variant="h5">
-        Sunny
+export default withStyles(styles)(({ classes, weather }: Props) => {
+  const temperature = `${weather.temperature.toFixed(0)}°F`;
+  return (
+    <div className={classes.weather}>
+      <Typography className={classes.weatherDegrees} variant="h2">
+        {temperature}
       </Typography>
+      <div className={classes.weatherInfo}>
+        <i className={classNames(classes.icon, `${getIcon(weather)}`)} />
+        <Typography className={classes.weatherDescription} variant="h5">
+          {weather.summary}
+        </Typography>
+      </div>
     </div>
-  </div>
-));
+  );
+});

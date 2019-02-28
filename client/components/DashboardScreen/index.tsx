@@ -1,18 +1,15 @@
 import * as React from 'react';
 import { useState } from 'react';
 import { RouteProps } from 'react-router';
-import classNames from 'classnames';
-import {
-  Fab,
-  Modal,
-  Grid,
-  Theme,
-  Typography,
-  WithStyles,
-  withStyles,
-  createStyles
-} from '@material-ui/core';
+import { Query } from 'react-apollo';
+import { Fab, Modal, Grid, Theme, WithStyles, withStyles, createStyles } from '@material-ui/core';
 import { Settings } from '@material-ui/icons';
+// graphql
+import * as Type from '../../graphql/types';
+import * as query from '../../graphql/queries';
+// hooks
+import useLocation from './hooks/useLocation';
+// components
 import SettingScreen from '../SettingScreen';
 import Weather from './Weather';
 
@@ -33,6 +30,7 @@ const styles = (theme: Theme) =>
 interface Props extends WithStyles<typeof styles>, RouteProps {}
 
 export default withStyles(styles)(({ classes }: Props) => {
+  const [coords, errMessage] = useLocation();
   const [modalOpen, setModalOpen] = useState(false);
 
   const handleModalControl = () => {
@@ -43,10 +41,26 @@ export default withStyles(styles)(({ classes }: Props) => {
     <div className={classes.root}>
       <Grid container direction="column" spacing={24}>
         <Grid item container direction="row" justify="space-between">
-          <Weather />
-          <Fab color="primary" aria-label="Settings" size="medium" onClick={handleModalControl}>
-            <Settings />
-          </Fab>
+          <Grid item>
+            {coords ? (
+              <Query<Type.Weather.Data, Type.Weather.Variables>
+                query={query.weather}
+                variables={{ lat: coords.latitude, long: coords.longitude }}
+              >
+                {({ data: { weather }, loading }) => {
+                  if (loading) return null;
+                  return <Weather weather={weather} />;
+                }}
+              </Query>
+            ) : (
+              <></>
+            )}
+          </Grid>
+          <Grid item>
+            <Fab color="primary" aria-label="Settings" size="medium" onClick={handleModalControl}>
+              <Settings />
+            </Fab>
+          </Grid>
         </Grid>
         <Grid item xs={12} />
       </Grid>
