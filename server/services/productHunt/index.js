@@ -62,11 +62,10 @@ const getPosts = async () => {
 
     // check error
     if (response.status !== 200) {
-      throw Error(response.data.error_message || 'Unable to get posts.');
+      throw Error(response.data.error_message || 'Unable to get product hunt posts.');
     }
 
     // return result
-    console.log('posts', response.data);
     return response.data;
   } catch (err) {
     throw err;

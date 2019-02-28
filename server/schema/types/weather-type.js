@@ -7,8 +7,6 @@ const WeatherType = new GraphQLObjectType({
     time: { type: GraphQLInt },
     summary: { type: GraphQLString },
     icon: { type: GraphQLString },
-    precipProbability: { type: GraphQLFloat },
-    precipType: { type: GraphQLString },
     temperature: { type: GraphQLFloat }
   }
 });

@@ -1,9 +1,20 @@
 import * as React from 'react';
 import { useState } from 'react';
-import { Fab, Modal, Grid, Theme, WithStyles, withStyles, createStyles } from '@material-ui/core';
+import { RouteProps } from 'react-router';
+import classNames from 'classnames';
+import {
+  Fab,
+  Modal,
+  Grid,
+  Theme,
+  Typography,
+  WithStyles,
+  withStyles,
+  createStyles
+} from '@material-ui/core';
 import { Settings } from '@material-ui/icons';
 import SettingScreen from '../SettingScreen';
-import { RouteProps } from 'react-router';
+import Weather from './Weather';
 
 const styles = (theme: Theme) =>
   createStyles({
@@ -31,7 +42,8 @@ export default withStyles(styles)(({ classes }: Props) => {
   return (
     <div className={classes.root}>
       <Grid container direction="column" spacing={24}>
-        <Grid item container direction="row" justify="flex-end">
+        <Grid item container direction="row" justify="space-between">
+          <Weather />
           <Fab color="primary" aria-label="Settings" size="medium" onClick={handleModalControl}>
             <Settings />
           </Fab>

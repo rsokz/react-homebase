@@ -1,5 +1,4 @@
 import * as React from 'react';
-
 import { useState } from 'react';
 import {
   Paper,
@@ -22,7 +21,7 @@ const styles = (theme: Theme) =>
       paddingBottom: theme.spacing.unit * 2
     },
     gridList: {
-      // flexWrap: 'nowrap',
+      flexWrap: 'nowrap',
       // Promote the list into his own layer on Chrome. This cost memory but helps keeping high FPS.
       transform: 'translateZ(0)'
     },
