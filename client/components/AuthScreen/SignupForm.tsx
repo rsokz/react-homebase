@@ -50,7 +50,7 @@ export default withStyles(styles)(({ classes, errors, onSignUp }: Props) => {
     <form className={classes.form} noValidate autoComplete="off" onSubmit={handleSignup}>
       <TextField
         id="standard-name"
-        label="First Name"
+        label="Name"
         margin="normal"
         fullWidth
         value={name}

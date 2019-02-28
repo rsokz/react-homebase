@@ -1,45 +1,64 @@
 import * as React from 'react';
 import { useState } from 'react';
-import { RouteComponentProps } from 'react-router';
-import { Paper, Grid, Modal, WithStyles, withStyles, createStyles } from '@material-ui/core';
+import { Close } from '@material-ui/icons';
+import {
+  Fab,
+  Grid,
+  TextField,
+  Theme,
+  Typography,
+  createStyles,
+  withStyles,
+  WithStyles
+} from '@material-ui/core';
 import { Mutation } from 'react-apollo';
+// components
+import DashboardOptions from './DashboardOptions';
+import UserDetails from './UserDetails';
 
-const styles = createStyles({
-  root: {
-    flexGrow: 1
-  },
-  paper: {
-    backgroundColor: 'black',
-    height: '100%'
-  }
-});
+const styles = (theme: Theme) =>
+  createStyles({
+    root: {
+      flexGrow: 1,
+      backgroundColor: 'rgba(0, 0, 0, 0.5)',
+      padding: theme.spacing.unit * 1.5,
+      minHeight: '100vh'
+    },
+    title: {}
+  });
 
-interface Props extends WithStyles<typeof styles> {}
+interface Props extends WithStyles<typeof styles> {
+  onClose: () => void;
+}
 
-export default withStyles(styles)(({ classes }: Props) => {
+export default withStyles(styles)(({ classes, onClose }: Props) => {
+  const [name, setName] = useState('');
+
+  const handleNameChange = e => {
+    setName(e.target.value);
+  };
+
+  const handleSettingsClose = () => {
+    onClose();
+  };
+
   return (
     <div className={classes.root}>
-      <Grid container spacing={24}>
-        <Grid item xs={12}>
-          <Paper className={classes.paper}>xs=12</Paper>
+      <Grid container direction="column" spacing={40}>
+        <Grid item container direction="row" justify="flex-end">
+          <Fab color="primary" aria-label="Settings" size="medium" onClick={handleSettingsClose}>
+            <Close />
+          </Fab>
         </Grid>
-        <Grid item xs={6}>
-          <Paper className={classes.paper}>xs=6</Paper>
-        </Grid>
-        <Grid item xs={6}>
-          <Paper className={classes.paper}>xs=6</Paper>
-        </Grid>
-        <Grid item xs={3}>
-          <Paper className={classes.paper}>xs=3</Paper>
-        </Grid>
-        <Grid item xs={3}>
-          <Paper className={classes.paper}>xs=3</Paper>
-        </Grid>
-        <Grid item xs={3}>
-          <Paper className={classes.paper}>xs=3</Paper>
-        </Grid>
-        <Grid item xs={3}>
-          <Paper className={classes.paper}>xs=3</Paper>
+        <Grid item xs={12} container justify="center">
+          <Grid item xs={8} container direction="column" spacing={32}>
+            <Grid item>
+              <UserDetails />
+            </Grid>
+            <Grid item>
+              <DashboardOptions />
+            </Grid>
+          </Grid>
         </Grid>
       </Grid>
     </div>
