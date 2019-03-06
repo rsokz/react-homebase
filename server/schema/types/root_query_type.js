@@ -3,9 +3,11 @@ const graphql = require('graphql');
 const { GraphQLObjectType, GraphQLFloat } = graphql;
 const UserType = require('./user-type');
 const WeatherType = require('./weather-type');
-const WeatherService = require('../../services/darksky');
 const ProductType = require('./product-type');
+const NBAType = require('./nba-type');
+const WeatherService = require('../../services/darksky');
 const ProductHuntService = require('../../services/productHunt');
+const SportsService = require('../../services/sports');
 
 const RootQueryType = new GraphQLObjectType({
   name: 'RootQueryType',
@@ -31,6 +33,12 @@ const RootQueryType = new GraphQLObjectType({
       type: ProductType,
       resolve(_, __, ___) {
         return ProductHuntService.getPosts();
+      }
+    },
+    nba: {
+      type: NBAType,
+      resolve(_parent, _args, _req) {
+        return SportsService.getNBAGames();
       }
     }
   }

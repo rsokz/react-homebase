@@ -13,12 +13,15 @@ import useLocation from './hooks/useLocation';
 import SettingScreen from '../SettingScreen';
 import Weather from './Weather';
 
+import BackgroundImages from '../SettingScreen/images';
+
 const styles = (theme: Theme) =>
   createStyles({
     root: {
       flexGrow: 1,
-      backgroundImage:
-        "url('https://images.pexels.com/photos/34950/pexels-photo.jpg?cs=srgb&dl=abandoned-forest-hd-wallpaper-34950.jpg&fm=jpg')",
+      // backgroundImage:
+      //   "url('https://images.pexels.com/photos/34950/pexels-photo.jpg?cs=srgb&dl=abandoned-forest-hd-wallpaper-34950.jpg&fm=jpg')",
+      backgroundImage: `url(${BackgroundImages[2]})`,
       backgroundRepeat: 'no-repeat',
       backgroundPosition: 'center center',
       backgroundSize: 'cover',
