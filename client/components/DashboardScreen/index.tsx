@@ -12,6 +12,7 @@ import useLocation from './hooks/useLocation';
 // components
 import SettingScreen from '../SettingScreen';
 import Weather from './Weather';
+import ProductHunt from './ProductHunt';
 
 import BackgroundImages from '../SettingScreen/images';
 
@@ -26,7 +27,7 @@ const styles = (theme: Theme) =>
       backgroundPosition: 'center center',
       backgroundSize: 'cover',
       backgroundAttachment: 'fixed',
-      padding: theme.spacing.unit * 1.5
+      padding: theme.spacing.unit * 2
     }
   });
 
@@ -65,7 +66,16 @@ export default withStyles(styles)(({ classes }: Props) => {
             </Fab>
           </Grid>
         </Grid>
-        <Grid item xs={12} />
+        <Grid item xs={12} container justify="center" direction="row">
+          <Grid item container justify="space-between" spacing={24}>
+            <Grid item>
+              <ProductHunt />
+            </Grid>
+            <Grid item>
+              <ProductHunt />
+            </Grid>
+          </Grid>
+        </Grid>
       </Grid>
       <Modal open={modalOpen}>
         <SettingScreen onClose={handleModalControl} />

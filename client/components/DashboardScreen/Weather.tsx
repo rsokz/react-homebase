@@ -1,6 +1,7 @@
 import * as React from 'react';
 import classNames from 'classnames';
 import { Typography, Theme, withStyles, WithStyles, createStyles } from '@material-ui/core';
+
 import * as Type from '../../graphql/types';
 import { getIcon } from './utils/weather';
 
