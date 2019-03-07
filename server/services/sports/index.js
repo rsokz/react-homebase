@@ -1,11 +1,11 @@
 /**
- * @file darksky weather service
- * @link https://darksky.net/dev/docs
+ * @file MySportsFeed service
+ * @link https://www.mysportsfeeds.com/data-feeds/api-docs/
  */
 const axios = require('axios');
 const btoa = require('btoa');
 
-const getNBAGames = async (lat, long) => {
+const getNBAGames = async () => {
   try {
     const seasonName = 'current';
     const date = '20190228';
@@ -17,7 +17,7 @@ const getNBAGames = async (lat, long) => {
     const config = {
       headers: {
 				'Authorization': `Basic ${btoa("47a86413-828b-4d72-a217-e3460b:cykachmo10")}`
-      }
+      },
     };
 
     // get response
@@ -25,7 +25,7 @@ const getNBAGames = async (lat, long) => {
 
     // check error
     if (response.status !== 200) {
-      throw Error(response.data.error_message || 'Unable to get nba data.');
+      throw Error(response.data.error_message || 'Unable to get NBA data.');
     }
 
     // return result
