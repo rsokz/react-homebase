@@ -1,14 +1,8 @@
 import * as React from 'react';
 import { useState } from 'react';
 import { RouteProps } from 'react-router';
-import { Query } from 'react-apollo';
 import { Fab, Modal, Grid, Theme, WithStyles, withStyles, createStyles } from '@material-ui/core';
 import { Settings } from '@material-ui/icons';
-// graphql
-import * as Type from '../../graphql/types';
-import * as query from '../../graphql/queries';
-// hooks
-import useLocation from './hooks/useLocation';
 // components
 import SettingScreen from '../SettingScreen';
 import Weather from './Weather';
@@ -33,13 +27,15 @@ const styles = (theme: Theme) =>
     content: {
       padding: '0 40px',
       paddingTop: theme.spacing.unit * 2
+    },
+    modal: {
+      overflow: 'scroll'
     }
   });
 
 interface Props extends WithStyles<typeof styles>, RouteProps {}
 
 export default withStyles(styles)(({ classes }: Props) => {
-  const [coords, errMessage] = useLocation();
   const [modalOpen, setModalOpen] = useState(false);
 
   const handleModalControl = () => {
@@ -75,7 +71,7 @@ export default withStyles(styles)(({ classes }: Props) => {
           </Grid>
         </Grid>
       </Grid>
-      <Modal open={modalOpen}>
+      <Modal className={classes.modal} open={modalOpen}>
         <SettingScreen onClose={handleModalControl} />
       </Modal>
     </main>

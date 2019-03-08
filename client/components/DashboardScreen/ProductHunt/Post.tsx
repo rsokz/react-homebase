@@ -75,9 +75,11 @@ export default withStyles(styles)(({ classes, post }: Props) => {
             <Typography variant="caption" color="textSecondary">
               {post.tagline}
             </Typography>
-            <Typography className={classes.topic} variant="overline" color="secondary">
-              {post.topics[0].name}
-            </Typography>
+            {post.topics.length > 0 && (
+              <Typography className={classes.topic} variant="overline" color="secondary">
+                {post.topics[0].name}
+              </Typography>
+            )}
           </React.Fragment>
         }
       />

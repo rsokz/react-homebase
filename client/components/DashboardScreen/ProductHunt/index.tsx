@@ -1,7 +1,15 @@
 import * as React from 'react';
 import Lottie from 'react-lottie';
 import { Query } from 'react-apollo';
-import { List, Paper, Theme, WithStyles, createStyles, withStyles } from '@material-ui/core';
+import {
+  Divider,
+  List,
+  Paper,
+  Theme,
+  WithStyles,
+  createStyles,
+  withStyles
+} from '@material-ui/core';
 import * as Type from '../../../graphql/types';
 import * as query from '../../../graphql/queries';
 import images from './images';
@@ -14,7 +22,7 @@ const styles = (theme: Theme) =>
     root: {
       width: '600px',
       height: '72%',
-      backgroundColor: 'rgba(255, 255, 255, 0.95);'
+      backgroundColor: 'rgba(255, 255, 255, 0.96);'
     },
     list: {
       ...theme.mixins.gutters(),
@@ -59,7 +67,12 @@ export default withStyles(styles)(({ classes }: Props) => {
                 </div>
               );
             return products.posts.map(post => {
-              return <Post post={post} />;
+              return (
+                <React.Fragment>
+                  <Post post={post} />
+                  <Divider variant="inset" light />
+                </React.Fragment>
+              );
             });
           }}
         </Query>

@@ -19,9 +19,9 @@ import UserDetails from './UserDetails';
 const styles = (theme: Theme) =>
   createStyles({
     root: {
-      flexGrow: 1,
+      // flexGrow: 1,
       backgroundColor: 'rgba(0, 0, 0, 0.5)',
-      padding: theme.spacing.unit * 1.5,
+      padding: theme.spacing.unit * 2,
       minHeight: '100vh'
     },
     title: {}
