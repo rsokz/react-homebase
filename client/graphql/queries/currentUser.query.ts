@@ -6,6 +6,13 @@ export default gql`
       id
       email
       name
+      settings {
+        backgroundImage
+        websites {
+          url
+          iconURL
+        }
+      }
     }
   }
 `;

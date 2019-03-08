@@ -3,5 +3,12 @@ export interface Data {
     id: string;
     email: string;
     name: string;
+    settings: {
+      backgroundImage: number;
+      websites: {
+        url: string;
+        iconURL: string;
+      }[];
+    };
   };
 }

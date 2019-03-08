@@ -11,9 +11,6 @@ const styles = (theme: Theme) =>
       color: 'white',
       fontSize: '35'
     },
-    weather: {
-      margin: theme.spacing.unit * 2
-    },
     weatherInfo: {
       alignItems: 'center',
       display: 'flex',
@@ -24,6 +21,7 @@ const styles = (theme: Theme) =>
       marginBottom: theme.spacing.unit
     },
     weatherDescription: {
+      fontSize: '1.25rem',
       color: 'white',
       lineHeight: 1
     }
@@ -34,11 +32,12 @@ interface Props extends WithStyles<typeof styles> {
 }
 
 export default withStyles(styles)(({ classes, weather }: Props) => {
-  const temperature = `${weather.temperature.toFixed(0)}°F`;
+  const temperature = weather.temperature.toFixed(0);
   return (
-    <div className={classes.weather}>
-      <Typography className={classes.weatherDegrees} variant="h2">
+    <React.Fragment>
+      <Typography className={classes.weatherDegrees} variant="h3">
         {temperature}
+        <span style={{ fontWeight: 300, fontSize: '2.5rem' }}>°F</span>
       </Typography>
       <div className={classes.weatherInfo}>
         <div className={classes.icon}>
@@ -59,6 +58,6 @@ export default withStyles(styles)(({ classes, weather }: Props) => {
           {weather.summary}
         </Typography>
       </div>
-    </div>
+    </React.Fragment>
   );
 });

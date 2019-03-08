@@ -15,7 +15,6 @@ import * as query from '../../../graphql/queries';
 import images from './images';
 // components
 import Post from './Post';
-const loaderData = require('./ph-loader.json');
 
 const styles = (theme: Theme) =>
   createStyles({
@@ -54,7 +53,7 @@ export default withStyles(styles)(({ classes }: Props) => {
                     options={{
                       loop: true,
                       autoplay: true,
-                      animationData: loaderData,
+                      animationData: require('./ph-loader.json'),
                       rendererSettings: {
                         preserveAspectRatio: 'xMidYMid slice'
                       }

@@ -10,11 +10,30 @@ import * as query from '../../../graphql/queries';
 // components
 import WeatherDisplay from './WeatherDisplay';
 
-const loaderData = require('./weather-loader.json');
-
 export default () => {
   const [coords, errMessage] = useLocation();
   const [isLoaderStopped, setIsLoaderStopped] = useState(false);
+
+  const loader = () => {
+    return (
+      <div style={{ height: 92, width: 0 }}>
+        <Lottie
+          options={{
+            loop: true,
+            autoplay: true,
+            animationData: require('./weather-loader.json'),
+            rendererSettings: {
+              preserveAspectRatio: 'xMidYMid slice'
+            }
+          }}
+          isClickToPauseDisabled={true}
+          height={85}
+          width={85}
+          isStopped={isLoaderStopped}
+        />
+      </div>
+    );
+  };
 
   return coords ? (
     <Query<Type.Weather.Data, Type.Weather.Variables>
@@ -23,26 +42,13 @@ export default () => {
     >
       {({ data: { weather }, loading }) => {
         setIsLoaderStopped(true);
-        if (loading) return <div style={{ height: 135 }} />;
+        if (loading) {
+          return loader();
+        }
         return <WeatherDisplay weather={weather} />;
       }}
     </Query>
   ) : (
-    <div style={{ height: 135, justifyContent: 'center' }}>
-      <Lottie
-        options={{
-          loop: true,
-          autoplay: true,
-          animationData: loaderData,
-          rendererSettings: {
-            preserveAspectRatio: 'xMidYMid slice'
-          }
-        }}
-        isClickToPauseDisabled={true}
-        height={100}
-        width={100}
-        isStopped={isLoaderStopped}
-      />
-    </div>
+    loader()
   );
 };
