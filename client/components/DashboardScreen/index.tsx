@@ -31,7 +31,8 @@ const styles = (theme: Theme) =>
       padding: theme.spacing.unit * 2
     },
     content: {
-      padding: '16px 20px'
+      padding: '0 40px',
+      paddingTop: theme.spacing.unit * 2
     }
   });
 
@@ -58,8 +59,15 @@ export default withStyles(styles)(({ classes }: Props) => {
             </Fab>
           </Grid>
         </Grid>
-        <Grid className={classes.content} item container justify="center" direction="row">
-          <Grid item container justify="space-between" alignItems="center" spacing={24}>
+        <Grid item container justify="center" direction="row">
+          <Grid
+            className={classes.content}
+            item
+            container
+            justify="center"
+            alignItems="center"
+            spacing={24}
+          >
             <Grid item>
               <ProductHunt />
             </Grid>

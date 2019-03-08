@@ -13,7 +13,8 @@ const styles = (theme: Theme) =>
   createStyles({
     root: {
       width: '600px',
-      height: '75%'
+      height: '72%',
+      backgroundColor: 'rgba(255, 255, 255, 0.95);'
     },
     list: {
       ...theme.mixins.gutters(),

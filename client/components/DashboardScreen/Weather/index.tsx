@@ -28,7 +28,7 @@ export default () => {
       }}
     </Query>
   ) : (
-    <div style={{ height: 135 }}>
+    <div style={{ height: 135, justifyContent: 'center' }}>
       <Lottie
         options={{
           loop: true,
