@@ -1,7 +1,7 @@
 /**
  * @file weather utils
  * @link https://darksky.net/dev/docs
- * @link https://erikflowers.github.io/weather-icons/
+ * @link https://lottiefiles.com/user/26177
  */
 import * as Type from '../../../../graphql/types';
 
@@ -32,4 +32,4 @@ const iconMap: { [key in IconType]: string } = {
 };
 
 export const getIcon = (weather?: Type.Weather.Data['weather']): string =>
-  weather && weather.icon ? iconMap[weather.icon] : 'wi wi-day-sunny';
+  weather && weather.icon ? iconMap[weather.icon] : require('./weather-sunny.json');
