@@ -19,9 +19,7 @@ import BackgroundImages from '../SettingScreen/images';
 const styles = (theme: Theme) =>
   createStyles({
     root: {
-      // flexGrow: 1,
-      // backgroundImage:
-      //   "url('https://images.pexels.com/photos/34950/pexels-photo.jpg?cs=srgb&dl=abandoned-forest-hd-wallpaper-34950.jpg&fm=jpg')",
+      display: 'block',
       backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0) 30%), url(${
         BackgroundImages[2]
       })`,
@@ -29,11 +27,9 @@ const styles = (theme: Theme) =>
       backgroundPosition: 'center center',
       backgroundSize: 'cover',
       backgroundAttachment: 'fixed',
-      padding: theme.spacing.unit * 2,
-      // overflow: 'auto',
-      minHeight: '100vh'
+      minHeight: '100vh',
+      padding: theme.spacing.unit * 2
     },
-
     content: {
       padding: '16px 20px'
     }
@@ -50,9 +46,8 @@ export default withStyles(styles)(({ classes }: Props) => {
   };
 
   return (
-    // <main className={classes.root}>
-    <React.Fragment>
-      <Grid className={classes.root} container direction="column" spacing={24}>
+    <main className={classes.root}>
+      <Grid container direction="column" spacing={24}>
         <Grid item container direction="row" justify="space-between">
           <Grid item>
             {coords ? (
@@ -75,8 +70,8 @@ export default withStyles(styles)(({ classes }: Props) => {
             </Fab>
           </Grid>
         </Grid>
-        <Grid className={classes.content} item xs={12} container justify="center" direction="row">
-          <Grid item container justify="space-between" spacing={24}>
+        <Grid className={classes.content} item container justify="center" direction="row">
+          <Grid item container justify="space-between" alignItems="center" spacing={24}>
             <Grid item>
               <ProductHunt />
             </Grid>
@@ -87,7 +82,6 @@ export default withStyles(styles)(({ classes }: Props) => {
       <Modal open={modalOpen}>
         <SettingScreen onClose={handleModalControl} />
       </Modal>
-    </React.Fragment>
-    // </main>
+    </main>
   );
 });
