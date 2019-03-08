@@ -1,9 +1,8 @@
 import * as React from 'react';
 import Lottie from 'react-lottie';
 import { Typography, Theme, withStyles, WithStyles, createStyles } from '@material-ui/core';
-
-import * as Type from '../../graphql/types';
-import { getIcon } from './utils/weather';
+import * as Type from '../../../graphql/types';
+import { getIcon } from '../utils/weather';
 
 const styles = (theme: Theme) =>
   createStyles({
@@ -42,7 +41,6 @@ export default withStyles(styles)(({ classes, weather }: Props) => {
         {temperature}
       </Typography>
       <div className={classes.weatherInfo}>
-        {/* <i className={classNames(classes.icon, `${getIcon(weather)}`)} /> */}
         <div className={classes.icon}>
           <Lottie
             options={{

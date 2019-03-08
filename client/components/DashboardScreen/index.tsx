@@ -50,19 +50,7 @@ export default withStyles(styles)(({ classes }: Props) => {
       <Grid container direction="column" spacing={24}>
         <Grid item container direction="row" justify="space-between">
           <Grid item>
-            {coords ? (
-              <Query<Type.Weather.Data, Type.Weather.Variables>
-                query={query.weather}
-                variables={{ lat: coords.latitude, long: coords.longitude }}
-              >
-                {({ data: { weather }, loading }) => {
-                  if (loading) return <div style={{ height: 139 }} />;
-                  return <Weather weather={weather} />;
-                }}
-              </Query>
-            ) : (
-              <div style={{ height: 139 }} />
-            )}
+            <Weather />
           </Grid>
           <Grid item>
             <Fab color="primary" aria-label="Settings" size="medium" onClick={handleModalControl}>

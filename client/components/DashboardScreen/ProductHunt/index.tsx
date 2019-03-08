@@ -7,7 +7,7 @@ import * as query from '../../../graphql/queries';
 import images from './images';
 // components
 import Post from './Post';
-const loaderData = require('./PHLoader.json');
+const loaderData = require('./ph-loader.json');
 
 const styles = (theme: Theme) =>
   createStyles({
@@ -50,6 +50,7 @@ export default withStyles(styles)(({ classes }: Props) => {
                         preserveAspectRatio: 'xMidYMid slice'
                       }
                     }}
+                    isClickToPauseDisabled={true}
                     height={200}
                     width={200}
                     isStopped={!loading}
