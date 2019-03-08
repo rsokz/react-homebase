@@ -1,16 +1,19 @@
 export interface Data {
-  product: {
-    discussion_url: string;
-    name: string;
-    tagline: string;
-    thumbnail?: {
-      image_url: string;
-    };
-    topics: {
-      name: string;
-    };
-    vote_count: number;
+  products: {
+    posts: Post[];
   };
 }
 
-export interface Variables {}
+export interface Post {
+  id: number;
+  discussion_url: string;
+  name: string;
+  tagline: string;
+  thumbnail?: {
+    image_url: string;
+  };
+  topics: {
+    name: string;
+  }[];
+  votes_count: number;
+}

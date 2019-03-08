@@ -19,15 +19,23 @@ import BackgroundImages from '../SettingScreen/images';
 const styles = (theme: Theme) =>
   createStyles({
     root: {
-      flexGrow: 1,
+      // flexGrow: 1,
       // backgroundImage:
       //   "url('https://images.pexels.com/photos/34950/pexels-photo.jpg?cs=srgb&dl=abandoned-forest-hd-wallpaper-34950.jpg&fm=jpg')",
-      backgroundImage: `url(${BackgroundImages[2]})`,
+      backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0) 30%), url(${
+        BackgroundImages[2]
+      })`,
       backgroundRepeat: 'no-repeat',
       backgroundPosition: 'center center',
       backgroundSize: 'cover',
       backgroundAttachment: 'fixed',
-      padding: theme.spacing.unit * 2
+      padding: theme.spacing.unit * 2,
+      // overflow: 'auto',
+      minHeight: '100vh'
+    },
+
+    content: {
+      padding: '16px 20px'
     }
   });
 
@@ -42,8 +50,9 @@ export default withStyles(styles)(({ classes }: Props) => {
   };
 
   return (
-    <div className={classes.root}>
-      <Grid container direction="column" spacing={24}>
+    // <main className={classes.root}>
+    <React.Fragment>
+      <Grid className={classes.root} container direction="column" spacing={24}>
         <Grid item container direction="row" justify="space-between">
           <Grid item>
             {coords ? (
@@ -52,12 +61,12 @@ export default withStyles(styles)(({ classes }: Props) => {
                 variables={{ lat: coords.latitude, long: coords.longitude }}
               >
                 {({ data: { weather }, loading }) => {
-                  if (loading) return null;
+                  if (loading) return <div style={{ height: 139 }} />;
                   return <Weather weather={weather} />;
                 }}
               </Query>
             ) : (
-              <></>
+              <div style={{ height: 139 }} />
             )}
           </Grid>
           <Grid item>
@@ -66,20 +75,19 @@ export default withStyles(styles)(({ classes }: Props) => {
             </Fab>
           </Grid>
         </Grid>
-        <Grid item xs={12} container justify="center" direction="row">
+        <Grid className={classes.content} item xs={12} container justify="center" direction="row">
           <Grid item container justify="space-between" spacing={24}>
             <Grid item>
               <ProductHunt />
             </Grid>
-            <Grid item>
-              <ProductHunt />
-            </Grid>
+            <Grid item />
           </Grid>
         </Grid>
       </Grid>
       <Modal open={modalOpen}>
         <SettingScreen onClose={handleModalControl} />
       </Modal>
-    </div>
+    </React.Fragment>
+    // </main>
   );
 });

@@ -1,5 +1,4 @@
 import * as React from 'react';
-import classNames from 'classnames';
 import {
   ListItem,
   ListItemAvatar,
@@ -14,7 +13,6 @@ import {
 } from '@material-ui/core';
 import ArrowDropUpIcon from '@material-ui/icons/ArrowDropUp';
 import * as Type from '../../../graphql/types';
-import { getIcon } from '../utils/weather';
 
 const styles = (theme: Theme) =>
   createStyles({
@@ -24,7 +22,7 @@ const styles = (theme: Theme) =>
       borderRadius: 0
     },
     content: {
-      marginRight: theme.spacing.unit * 2
+      marginRight: '50px'
     },
     title: {
       lineHeight: 1.2
@@ -41,42 +39,44 @@ const styles = (theme: Theme) =>
     upvoteContainer: {
       border: '1px solid #e8e8e8',
       borderRadius: '3px',
-      padding: '8px 12px 12px 12px'
+      padding: '8px 12px 12px 12px',
+      alignItems: 'center'
     },
     upvoteText: {
-      lineHeight: 1
+      lineHeight: 1,
+      textAlign: 'center'
     }
   });
 
 interface Props extends WithStyles<typeof styles> {
-  product?: Type.ProductHunt.Data['product'];
+  post: Type.ProductHunt.Post;
 }
 
-export default withStyles(styles)(({ classes, product }: Props) => {
-  // const temperature = `${weather.temperature.toFixed(0)}°F`;
+export default withStyles(styles)(({ classes, post }: Props) => {
   return (
-    <ListItem alignItems="flex-start">
+    <ListItem
+      button
+      alignItems="flex-start"
+      key={post.id}
+      onClick={() => window.open(post.discussion_url, '_blank')}
+    >
       <ListItemAvatar>
-        <Avatar
-          className={classes.avatar}
-          src="https://images.pexels.com/photos/1051075/pexels-photo-1051075.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
-        />
+        <Avatar className={classes.avatar} src={post.thumbnail.image_url} />
       </ListItemAvatar>
       <ListItemText
         className={classes.content}
         primary={
           <Typography className={classes.title} variant="h6" color="textPrimary">
-            Aiko Meet
+            {post.name}
           </Typography>
         }
         secondary={
           <React.Fragment>
             <Typography variant="caption" color="textSecondary">
-              🤖 Video Chat in browser with AI Subtitles + Transcript 🤖
+              {post.tagline}
             </Typography>
-
             <Typography className={classes.topic} variant="overline" color="secondary">
-              Productivity
+              {post.topics[0].name}
             </Typography>
           </React.Fragment>
         }
@@ -85,7 +85,7 @@ export default withStyles(styles)(({ classes, product }: Props) => {
         <div className={classes.upvoteContainer}>
           <ArrowDropUpIcon />
           <Typography className={classes.upvoteText} variant="button">
-            280
+            {post.votes_count}
           </Typography>
         </div>
       </ListItemSecondaryAction>

@@ -56,7 +56,7 @@ passport.use(
 // because Passport only supports callbacks, while GraphQL only supports promises
 // for async code!  Awkward!
 function signup({ email, password, name, req }) {
-  const user = new User({ email, password, name });
+  const user = new User({ email, password, name, settings: { backgroundImage: 0 } });
   if (!name) {
     throw new Error('You must provide a name.');
   }

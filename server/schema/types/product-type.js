@@ -5,6 +5,7 @@ const { GraphQLObjectType, GraphQLString, GraphQLInt, GraphQLList } = graphql;
 const Post = new GraphQLObjectType({
   name: 'Post',
   fields: {
+    id: { type: GraphQLInt },
     discussion_url: { type: GraphQLString },
     name: { type: GraphQLString },
     tagline: { type: GraphQLString },
