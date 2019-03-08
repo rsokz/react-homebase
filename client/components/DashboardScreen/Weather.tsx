@@ -1,5 +1,5 @@
 import * as React from 'react';
-import classNames from 'classnames';
+import Lottie from 'react-lottie';
 import { Typography, Theme, withStyles, WithStyles, createStyles } from '@material-ui/core';
 
 import * as Type from '../../graphql/types';
@@ -16,15 +16,17 @@ const styles = (theme: Theme) =>
       margin: theme.spacing.unit * 2
     },
     weatherInfo: {
+      alignItems: 'center',
       display: 'flex',
       flexDirection: 'row'
     },
     weatherDegrees: {
       color: 'white',
-      marginBottom: theme.spacing.unit * 1.5
+      marginBottom: theme.spacing.unit
     },
     weatherDescription: {
-      color: 'white'
+      color: 'white',
+      lineHeight: 1
     }
   });
 
@@ -40,7 +42,21 @@ export default withStyles(styles)(({ classes, weather }: Props) => {
         {temperature}
       </Typography>
       <div className={classes.weatherInfo}>
-        <i className={classNames(classes.icon, `${getIcon(weather)}`)} />
+        {/* <i className={classNames(classes.icon, `${getIcon(weather)}`)} /> */}
+        <div className={classes.icon}>
+          <Lottie
+            options={{
+              loop: true,
+              autoplay: true,
+              animationData: getIcon(weather),
+              rendererSettings: {
+                preserveAspectRatio: 'xMidYMid slice'
+              }
+            }}
+            height={35}
+            width={35}
+          />
+        </div>
         <Typography className={classes.weatherDescription} variant="h5">
           {weather.summary}
         </Typography>

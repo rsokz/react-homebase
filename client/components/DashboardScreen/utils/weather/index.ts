@@ -3,7 +3,7 @@
  * @link https://darksky.net/dev/docs
  * @link https://erikflowers.github.io/weather-icons/
  */
-import * as Type from '../../../graphql/types';
+import * as Type from '../../../../graphql/types';
 
 export enum IconType {
   CLEAR_DAY = 'clear-day',
@@ -19,16 +19,16 @@ export enum IconType {
 }
 
 const iconMap: { [key in IconType]: string } = {
-  'clear-day': 'wi wi-day-sunny',
-  'clear-night': 'wi wi-night-clear',
-  cloudy: 'wi wi-cloudy',
-  fog: 'wi wi-fog',
-  'partly-cloudy-day': 'wi wi-day-cloudy',
-  'partly-cloudy-night': 'wi wi-night-cloudy',
-  rain: 'wi wi-rain',
-  sleet: 'wi wi-sleet',
-  snow: 'wi wi-snow',
-  wind: 'wi wi-strong-wind'
+  'clear-day': require('./weather-sunny.json'),
+  'clear-night': require('./weather-night.json'),
+  cloudy: require('./weather-cloudy.json'),
+  fog: require('./weather-foggy.json'),
+  'partly-cloudy-day': require('./weather-partly-cloudy.json'),
+  'partly-cloudy-night': require('./weather-cloudy-night.json'),
+  rain: require('./weather-rain.json'),
+  sleet: require('./weather-snow.json'),
+  snow: require('./weather-snow.json'),
+  wind: require('./weather-wind.json')
 };
 
 export const getIcon = (weather?: Type.Weather.Data['weather']): string =>
