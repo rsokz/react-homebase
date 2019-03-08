@@ -39,7 +39,7 @@ const styles = (theme: Theme) =>
     },
     content: {
       padding: '0 40px',
-      paddingTop: theme.spacing.unit * 2
+      paddingTop: theme.spacing.unit * 5
     },
     greeting: {
       color: 'white',

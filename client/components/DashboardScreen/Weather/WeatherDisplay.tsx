@@ -17,8 +17,7 @@ const styles = (theme: Theme) =>
       flexDirection: 'row'
     },
     weatherDegrees: {
-      color: 'white',
-      marginBottom: theme.spacing.unit
+      color: 'white'
     },
     weatherDescription: {
       fontSize: '1.25rem',
@@ -37,7 +36,7 @@ export default withStyles(styles)(({ classes, weather }: Props) => {
     <React.Fragment>
       <Typography className={classes.weatherDegrees} variant="h3">
         {temperature}
-        <span style={{ fontWeight: 300, fontSize: '2.5rem' }}>°F</span>
+        <span style={{ fontWeight: 300, fontSize: '2.2rem' }}>°F</span>
       </Typography>
       <div className={classes.weatherInfo}>
         <div className={classes.icon}>
