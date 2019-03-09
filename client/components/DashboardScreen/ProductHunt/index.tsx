@@ -21,11 +21,16 @@ const styles = (theme: Theme) =>
     root: {
       width: '85%',
       height: '72%',
+      overflow: 'auto',
       backgroundColor: 'rgba(255, 255, 255, 0.96);'
+    },
+    header: {
+      position: 'fixed'
     },
     list: {
       ...theme.mixins.gutters(),
-      maxHeight: '88%',
+      height: '90%',
+      marginTop: '13%',
       overflow: 'auto'
     },
     loader: {
@@ -40,7 +45,7 @@ interface Props extends WithStyles<typeof styles> {}
 export default withStyles(styles)(({ classes }: Props) => {
   return (
     <Paper className={classes.root} elevation={1}>
-      <a href="https://www.producthunt.com/" target="_blank">
+      <a className={classes.header} href="https://www.producthunt.com/" target="_blank">
         <img src={images.productHunt} alt="product-hunt-logo" width="209" height="75" />
       </a>
       <List className={classes.list}>

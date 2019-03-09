@@ -45,7 +45,10 @@ const styles = (theme: Theme) =>
       color: 'white',
       fontWeight: 300,
       fontSize: '2.3rem',
-      textAlign: 'center'
+      textAlign: 'center',
+      [theme.breakpoints.down('md')]: {
+        marginTop: 25
+      }
     },
     modal: {
       overflow: 'scroll'
@@ -130,7 +133,7 @@ export default withWidth()(
                     container
                     justify="space-between"
                     alignItems="center"
-                    // spacing={40}
+                    spacing={isWidthDown('sm', width) && 40}
                   >
                     <Grid container item md={6} sm={12} justify="center">
                       <ProductHunt />
