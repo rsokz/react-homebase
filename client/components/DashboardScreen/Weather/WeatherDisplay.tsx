@@ -17,7 +17,8 @@ const styles = (theme: Theme) =>
       flexDirection: 'row'
     },
     weatherDegrees: {
-      color: 'white'
+      color: 'white',
+      marginBottom: theme.spacing.unit / 2
     },
     weatherDescription: {
       fontSize: '1.25rem',

@@ -19,7 +19,7 @@ import Post from './Post';
 const styles = (theme: Theme) =>
   createStyles({
     root: {
-      width: '600px',
+      width: '85%',
       height: '72%',
       backgroundColor: 'rgba(255, 255, 255, 0.96);'
     },
