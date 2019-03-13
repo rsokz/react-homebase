@@ -55,7 +55,8 @@ const styles = (theme: Theme) =>
     },
     websites: {
       display: 'flex',
-      flexDirection: 'row'
+      flexDirection: 'row',
+      justifyContent: 'center'
     }
   });
 
@@ -114,7 +115,7 @@ export default withWidth()(
                                   alt={website.url}
                                   width="40"
                                   height="40"
-                                  style={{ borderRadius: 20, marginRight: 10 }}
+                                  style={{ borderRadius: 20, marginRight: 15 }}
                                 />
                               </a>
                             ))}
@@ -126,11 +127,24 @@ export default withWidth()(
                   {isWidthDown('xs', width) ? (
                     <Grid item sm={6} xs={12}>
                       {currentUser && (
-                        <div style={{ backgroundColor: 'green' }}>
+                        <React.Fragment>
                           <Typography className={classes.greeting} variant="h4" gutterBottom>
                             Good Morning, {currentUser.name}.
                           </Typography>
-                        </div>
+                          <div className={classes.websites}>
+                            {currentUser.settings.websites.map(website => (
+                              <a href={website.url} target="_blank">
+                                <img
+                                  src={website.iconURL}
+                                  alt={website.url}
+                                  width="40"
+                                  height="40"
+                                  style={{ borderRadius: 20, marginRight: 15 }}
+                                />
+                              </a>
+                            ))}
+                          </div>
+                        </React.Fragment>
                       )}
                     </Grid>
                   ) : (

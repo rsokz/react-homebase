@@ -88,10 +88,9 @@ export default withStyles(styles)(({ classes, onClose }: Props) => {
                         />
                       )}
                     </Mutation>
-                    )}
                   </Grid>
                   <Grid item>
-                    <DashboardOptions />
+                    <DashboardOptions user={currentUser} />
                   </Grid>
                 </Grid>
               </Grid>

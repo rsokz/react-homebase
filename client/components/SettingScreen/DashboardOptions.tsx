@@ -47,87 +47,94 @@ interface Props extends WithStyles<typeof styles> {
   user?: Type.CurrentUser.Data['currentUser'];
 }
 
-export default withStyles(styles)(({ classes }: Props) => {
-  const [name, setName] = useState('');
+export default withStyles(styles)(
+  ({
+    classes,
+    user: {
+      settings: { backgroundImage, websites }
+    }
+  }: Props) => {
+    const [name, setName] = useState('');
 
-  const maySave = () => {
-    // return !!(email && password && name);
-  };
+    const maySave = () => {
+      // return !!(email && password && name);
+    };
 
-  const handleNameChange = e => {
-    setName(e.target.value);
-  };
+    const handleNameChange = e => {
+      setName(e.target.value);
+    };
 
-  return (
-    <Paper className={classes.root} square elevation={1}>
-      <Typography className={classes.title} variant="h5" gutterBottom>
-        Dashboard Options
-      </Typography>
-      <Divider light />
-      <div className={classes.inputBox}>
-        <Typography variant="button" gutterBottom>
-          Background Image:
+    return (
+      <Paper className={classes.root} square elevation={1}>
+        <Typography className={classes.title} variant="h5" gutterBottom>
+          Dashboard Options
         </Typography>
-        <GridList className={classes.gridList} cellHeight={100} cols={5}>
-          {images.map(image => (
-            <GridListTile>
-              <img src={image} />
-            </GridListTile>
-          ))}
-        </GridList>
-        <Typography style={{ marginTop: 24 }} variant="button" gutterBottom>
-          Top 4 Websites
-        </Typography>
-        <Grid container direction="row" spacing={32}>
-          <Grid item xs={6}>
-            <Input
-              id="website-one"
-              // value={this.state.name}
-              // onChange={this.handleChange}
-              fullWidth
-            />
-            <FormHelperText id="website-one-helper">Website #1</FormHelperText>
+        <Divider light />
+        <div className={classes.inputBox}>
+          <Typography variant="button" gutterBottom>
+            Background Image:
+          </Typography>
+          <GridList className={classes.gridList} cellHeight={100} cols={5}>
+            {images.map(image => (
+              <GridListTile>
+                <img src={image} />
+              </GridListTile>
+            ))}
+          </GridList>
+          <Typography style={{ marginTop: 24 }} variant="button" gutterBottom>
+            Top 4 Websites
+          </Typography>
+          <Grid container direction="row" spacing={32}>
+            <Grid item xs={6}>
+              <Input
+                id="website-one"
+                value={websites[0] && websites[0].url}
+                // onChange={this.handleChange}
+                fullWidth
+              />
+              <FormHelperText id="website-one-helper">Website #1</FormHelperText>
+            </Grid>
+            <Grid item xs={6}>
+              <Input
+                id="website-two"
+                value={websites[1] && websites[1].url}
+                // onChange={this.handleChange}
+                fullWidth
+              />
+              <FormHelperText id="website-two-helper">Website #2</FormHelperText>
+            </Grid>
           </Grid>
-          <Grid item xs={6}>
-            <Input
-              id="website-two"
-              // value={this.state.name}
-              // onChange={this.handleChange}
-              fullWidth
-            />
-            <FormHelperText id="website-two-helper">Website #2</FormHelperText>
+          <Grid container direction="row" spacing={32}>
+            <Grid item xs={6}>
+              <Input
+                id="website-three"
+                value={websites[2] && websites[2].url}
+                // onChange={this.handleChange}
+                fullWidth
+              />
+              <FormHelperText id="website-three-helper">Website #3</FormHelperText>
+            </Grid>
+            <Grid item xs={6}>
+              <Input
+                id="website-four"
+                value={websites[3] && websites[3].url}
+                // onChange={this.handleChange}
+                fullWidth
+              />
+              <FormHelperText id="website-four-helper">Website #4</FormHelperText>
+            </Grid>
           </Grid>
-        </Grid>
-        <Grid container direction="row" spacing={32}>
-          <Grid item xs={6}>
-            <Input
-              id="website-three"
-              // value={this.state.name}
-              // onChange={this.handleChange}
-              fullWidth
-            />
-            <FormHelperText id="website-three-helper">Website #3</FormHelperText>
-          </Grid>
-          <Grid item xs={6}>
-            <Input
-              id="website-four"
-              // value={this.state.name}
-              // onChange={this.handleChange}
-              fullWidth
-            />
-            <FormHelperText id="website-four-helper">Website #4</FormHelperText>
-          </Grid>
-        </Grid>
-        <Button
-          variant="contained"
-          size="medium"
-          color="primary"
-          className={classes.btn}
-          // disabled={!maySave()}
-        >
-          Save
-        </Button>
-      </div>
-    </Paper>
-  );
-});
+          <Button
+            variant="contained"
+            size="medium"
+            color="primary"
+            className={classes.btn}
+            // disabled={!maySave()}
+          >
+            Save
+          </Button>
+        </div>
+      </Paper>
+    );
+  }
+);
