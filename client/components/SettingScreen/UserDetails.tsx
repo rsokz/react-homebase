@@ -18,6 +18,7 @@ const styles = (theme: Theme) =>
     root: {
       paddingTop: theme.spacing.unit * 2,
       paddingBottom: theme.spacing.unit * 3
+      // width: '85%'
     },
     btn: {
       marginTop: theme.spacing.unit * 4,
@@ -26,10 +27,11 @@ const styles = (theme: Theme) =>
     title: {
       ...theme.mixins.gutters()
     },
+
     inputBox: {
       padding: '25px 0',
-      paddingLeft: 90,
-      paddingRight: 350
+      paddingLeft: '10%',
+      paddingRight: '20%'
     }
   });
 
@@ -40,7 +42,7 @@ interface Props extends WithStyles<typeof styles> {
 export default withStyles(styles)(({ classes, user }: Props) => {
   const [name, setName] = useState(user.name);
 
-  const maySaveAccountDetails = () => {
+  const maySave = () => {
     return !!name && name !== user.name;
   };
 
@@ -85,7 +87,7 @@ export default withStyles(styles)(({ classes, user }: Props) => {
           size="medium"
           color="primary"
           className={classes.btn}
-          disabled={!maySaveAccountDetails()}
+          disabled={!maySave()}
         >
           Save
         </Button>

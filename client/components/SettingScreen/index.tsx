@@ -63,7 +63,7 @@ export default withStyles(styles)(({ classes, onClose }: Props) => {
                 </Fab>
               </Grid>
               <Grid item xs={12} container justify="center">
-                <Grid item xs={8} container direction="column" spacing={32}>
+                <Grid item md={8} sm={10} xs={12} container direction="column" spacing={32}>
                   <Grid item>
                     <UserDetails user={currentUser} />
                   </Grid>
