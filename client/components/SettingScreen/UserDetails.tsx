@@ -34,14 +34,14 @@ const styles = (theme: Theme) =>
   });
 
 interface Props extends WithStyles<typeof styles> {
-  user: Type.CurrentUser.Data['currentUser'];
+  user?: Type.CurrentUser.Data['currentUser'];
 }
 
-export default withStyles(styles)(({ classes }: Props) => {
-  const [name, setName] = useState('');
+export default withStyles(styles)(({ classes, user }: Props) => {
+  const [name, setName] = useState(user.name);
 
   const maySaveAccountDetails = () => {
-    // return !!(email && password && name);
+    return !!name && name !== user.name;
   };
 
   const handleNameChange = e => {
@@ -66,8 +66,7 @@ export default withStyles(styles)(({ classes }: Props) => {
           InputProps={{
             readOnly: true
           }}
-          value={'email'}
-          // onChange={handleEmailChange}
+          value={user.email}
         />
         <TextField
           id="standard-name"
@@ -75,13 +74,19 @@ export default withStyles(styles)(({ classes }: Props) => {
           placeholder="Tim Apple"
           margin="normal"
           fullWidth
-          value={name}
           onChange={handleNameChange}
           InputLabelProps={{
             shrink: true
           }}
+          value={name}
         />
-        <Button variant="contained" size="medium" color="primary" className={classes.btn}>
+        <Button
+          variant="contained"
+          size="medium"
+          color="primary"
+          className={classes.btn}
+          disabled={!maySaveAccountDetails()}
+        >
           Save
         </Button>
       </div>

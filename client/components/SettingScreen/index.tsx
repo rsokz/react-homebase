@@ -11,6 +11,10 @@ import {
   withStyles,
   WithStyles
 } from '@material-ui/core';
+// graphql
+import * as query from '../../graphql/queries';
+import { CurrentUser } from '../../graphql/types';
+import { Query } from 'react-apollo';
 import { Mutation } from 'react-apollo';
 // components
 import DashboardOptions from './DashboardOptions';
@@ -43,24 +47,35 @@ export default withStyles(styles)(({ classes, onClose }: Props) => {
   };
 
   return (
-    <div className={classes.root}>
-      <Grid container direction="column" spacing={40}>
-        <Grid item container direction="row" justify="flex-end">
-          <Fab color="primary" aria-label="Settings" size="medium" onClick={handleSettingsClose}>
-            <Close />
-          </Fab>
-        </Grid>
-        <Grid item xs={12} container justify="center">
-          <Grid item xs={8} container direction="column" spacing={32}>
-            <Grid item>
-              <UserDetails />
+    <Query<CurrentUser.Data> query={query.currentUser}>
+      {({ data: { currentUser } }) => {
+        return (
+          <div className={classes.root}>
+            <Grid container direction="column" spacing={40}>
+              <Grid item container direction="row" justify="flex-end">
+                <Fab
+                  color="primary"
+                  aria-label="Settings"
+                  size="medium"
+                  onClick={handleSettingsClose}
+                >
+                  <Close />
+                </Fab>
+              </Grid>
+              <Grid item xs={12} container justify="center">
+                <Grid item xs={8} container direction="column" spacing={32}>
+                  <Grid item>
+                    <UserDetails user={currentUser} />
+                  </Grid>
+                  <Grid item>
+                    <DashboardOptions />
+                  </Grid>
+                </Grid>
+              </Grid>
             </Grid>
-            <Grid item>
-              <DashboardOptions />
-            </Grid>
-          </Grid>
-        </Grid>
-      </Grid>
-    </div>
+          </div>
+        );
+      }}
+    </Query>
   );
 });
