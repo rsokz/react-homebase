@@ -12,7 +12,8 @@ import {
   GridListTile,
   Input,
   FormHelperText,
-  Divider
+  Divider,
+  Button
 } from '@material-ui/core';
 import * as Type from '../../graphql/types';
 import images from './images';
@@ -23,13 +24,19 @@ const styles = (theme: Theme) =>
       paddingTop: theme.spacing.unit * 2,
       paddingBottom: theme.spacing.unit * 3
     },
+    btn: {
+      marginTop: theme.spacing.unit * 4,
+      textTransform: 'none'
+    },
     gridList: {
       flexWrap: 'wrap',
       // Promote the list into his own layer on Chrome. This cost memory but helps keeping high FPS.
       transform: 'translateZ(0)'
     },
     inputBox: {
-      padding: '25px 90px'
+      padding: '25px 0',
+      paddingLeft: '7%',
+      paddingRight: '10%'
     },
     title: {
       ...theme.mixins.gutters()
@@ -61,7 +68,7 @@ export default withStyles(styles)(({ classes }: Props) => {
         <Typography variant="button" gutterBottom>
           Background Image:
         </Typography>
-        <GridList className={classes.gridList} cellHeight={120} cols={5}>
+        <GridList className={classes.gridList} cellHeight={100} cols={5}>
           {images.map(image => (
             <GridListTile>
               <img src={image} />
@@ -69,7 +76,7 @@ export default withStyles(styles)(({ classes }: Props) => {
           ))}
         </GridList>
         <Typography style={{ marginTop: 24 }} variant="button" gutterBottom>
-          Top 5 Websites
+          Top 4 Websites
         </Typography>
         <Grid container direction="row" spacing={32}>
           <Grid item xs={6}>
@@ -111,6 +118,15 @@ export default withStyles(styles)(({ classes }: Props) => {
             <FormHelperText id="website-four-helper">Website #4</FormHelperText>
           </Grid>
         </Grid>
+        <Button
+          variant="contained"
+          size="medium"
+          color="primary"
+          className={classes.btn}
+          // disabled={!maySave()}
+        >
+          Save
+        </Button>
       </div>
     </Paper>
   );

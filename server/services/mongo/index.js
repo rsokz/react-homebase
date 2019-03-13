@@ -2,11 +2,11 @@ const mongoose = require('mongoose');
 
 const User = mongoose.model('user');
 
-const updateSettings = async email => {
+const updateName = async (email, name) => {
   try {
     const doc = await User.findOne({ email });
     console.log('mongoUser', doc);
-    doc.settings = { backgroundImage: 1 };
+    doc.name = name;
 
     const user = await doc.save();
     console.log('updated user', user);
@@ -16,4 +16,4 @@ const updateSettings = async email => {
   }
 };
 
-module.exports = { updateSettings };
+module.exports = { updateName };

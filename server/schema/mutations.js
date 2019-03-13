@@ -1,5 +1,5 @@
 const graphql = require('graphql');
-const { GraphQLObjectType, GraphQLString } = graphql;
+const { GraphQLObjectType, GraphQLString, GraphQLNonNull } = graphql;
 const UserType = require('./types/user-type');
 const AuthService = require('../services/auth');
 const MongoService = require('../services/mongo');
@@ -36,15 +36,15 @@ const mutation = new GraphQLObjectType({
         return AuthService.signup({ email, password, name, req });
       }
     },
-    updateSettings: {
+    updateName: {
       type: UserType,
       args: {
-        email: { type: GraphQLString }
+        name: { type: new GraphQLNonNull(GraphQLString) }
       },
-      resolve: async (_, { email }, req) => {
+      resolve: async (_, { name }, req) => {
         const { user } = req;
         console.log('userYo', user);
-        const response = await MongoService.updateSettings(user.email);
+        const response = await MongoService.updateName(user.email, name);
         console.log('response,', response);
         return response;
       }

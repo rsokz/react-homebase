@@ -16,6 +16,7 @@ import * as query from '../../graphql/queries';
 import { CurrentUser } from '../../graphql/types';
 import { Query } from 'react-apollo';
 import { Mutation } from 'react-apollo';
+import * as mutation from '../../graphql/mutations';
 // components
 import DashboardOptions from './DashboardOptions';
 import UserDetails from './UserDetails';
@@ -37,6 +38,7 @@ interface Props extends WithStyles<typeof styles> {
 
 export default withStyles(styles)(({ classes, onClose }: Props) => {
   const [name, setName] = useState('');
+  const [updateComplete, setUpdateComplete] = useState(false);
 
   const handleNameChange = e => {
     setName(e.target.value);
@@ -45,6 +47,12 @@ export default withStyles(styles)(({ classes, onClose }: Props) => {
   const handleSettingsClose = () => {
     onClose();
   };
+
+  const handleSetUpdateComplete = () => {
+    setUpdateComplete(true);
+  };
+
+  const handleNameUpdate = () => {};
 
   return (
     <Query<CurrentUser.Data> query={query.currentUser}>
@@ -65,7 +73,22 @@ export default withStyles(styles)(({ classes, onClose }: Props) => {
               <Grid item xs={12} container justify="center">
                 <Grid item md={8} sm={10} xs={12} container direction="column" spacing={32}>
                   <Grid item>
-                    <UserDetails user={currentUser} />
+                    <Mutation mutation={mutation.updateName} onCompleted={handleSetUpdateComplete}>
+                      {updateName => (
+                        <UserDetails
+                          user={currentUser}
+                          onSave={name => {
+                            updateName({
+                              variables: { name },
+                              refetchQueries: [{ query: query.currentUser }],
+                              awaitRefetchQueries: true
+                            });
+                          }}
+                          completed={updateComplete}
+                        />
+                      )}
+                    </Mutation>
+                    )}
                   </Grid>
                   <Grid item>
                     <DashboardOptions />

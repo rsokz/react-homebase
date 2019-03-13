@@ -12,6 +12,7 @@ import {
   Button
 } from '@material-ui/core';
 import * as Type from '../../graphql/types';
+import { ApolloError } from 'apollo-boost';
 
 const styles = (theme: Theme) =>
   createStyles({
@@ -21,25 +22,35 @@ const styles = (theme: Theme) =>
       // width: '85%'
     },
     btn: {
-      marginTop: theme.spacing.unit * 4,
+      marginRight: theme.spacing.unit * 2,
       textTransform: 'none'
+    },
+    btnBox: {
+      alignItems: 'center',
+      display: 'flex',
+      flexDirection: 'row',
+      marginTop: theme.spacing.unit * 4
+    },
+    inputBox: {
+      padding: '20px 0',
+      paddingLeft: '7%',
+      paddingRight: '20%'
+    },
+    successText: {
+      color: 'green'
     },
     title: {
       ...theme.mixins.gutters()
-    },
-
-    inputBox: {
-      padding: '25px 0',
-      paddingLeft: '10%',
-      paddingRight: '20%'
     }
   });
 
 interface Props extends WithStyles<typeof styles> {
   user?: Type.CurrentUser.Data['currentUser'];
+  completed: boolean;
+  onSave: (name: string) => void;
 }
 
-export default withStyles(styles)(({ classes, user }: Props) => {
+export default withStyles(styles)(({ classes, user, completed, onSave }: Props) => {
   const [name, setName] = useState(user.name);
 
   const maySave = () => {
@@ -48,6 +59,10 @@ export default withStyles(styles)(({ classes, user }: Props) => {
 
   const handleNameChange = e => {
     setName(e.target.value);
+  };
+
+  const handleSave = () => {
+    onSave(name);
   };
 
   return (
@@ -82,15 +97,23 @@ export default withStyles(styles)(({ classes, user }: Props) => {
           }}
           value={name}
         />
-        <Button
-          variant="contained"
-          size="medium"
-          color="primary"
-          className={classes.btn}
-          disabled={!maySave()}
-        >
-          Save
-        </Button>
+        <div className={classes.btnBox}>
+          <Button
+            variant="contained"
+            size="medium"
+            color="primary"
+            className={classes.btn}
+            onClick={handleSave}
+            disabled={!maySave()}
+          >
+            Save
+          </Button>
+          {completed && (
+            <Typography className={classes.successText} variant="h6">
+              Saved!
+            </Typography>
+          )}
+        </div>
       </div>
     </Paper>
   );
