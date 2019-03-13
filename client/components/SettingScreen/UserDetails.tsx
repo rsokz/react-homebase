@@ -12,7 +12,6 @@ import {
   Button
 } from '@material-ui/core';
 import * as Type from '../../graphql/types';
-import { ApolloError } from 'apollo-boost';
 
 const styles = (theme: Theme) =>
   createStyles({

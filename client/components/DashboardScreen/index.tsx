@@ -46,12 +46,16 @@ const styles = (theme: Theme) =>
       fontWeight: 300,
       fontSize: '2.3rem',
       textAlign: 'center',
-      [theme.breakpoints.down('md')]: {
+      [theme.breakpoints.down('xs')]: {
         marginTop: 25
       }
     },
     modal: {
       overflow: 'scroll'
+    },
+    websites: {
+      display: 'flex',
+      flexDirection: 'row'
     }
   });
 
@@ -98,18 +102,35 @@ export default withWidth()(
                   ) : (
                     <Grid item sm={6} xs={12}>
                       {currentUser && (
-                        <Typography className={classes.greeting} variant="h4" gutterBottom>
-                          Good Morning, {currentUser.name}.
-                        </Typography>
+                        <React.Fragment>
+                          <Typography className={classes.greeting} variant="h4" gutterBottom>
+                            Good Morning, {currentUser.name}.
+                          </Typography>
+                          <div className={classes.websites}>
+                            {currentUser.settings.websites.map(website => (
+                              <a href={website.url} target="_blank">
+                                <img
+                                  src={website.iconURL}
+                                  alt={website.url}
+                                  width="40"
+                                  height="40"
+                                  style={{ borderRadius: 20, marginRight: 10 }}
+                                />
+                              </a>
+                            ))}
+                          </div>
+                        </React.Fragment>
                       )}
                     </Grid>
                   )}
                   {isWidthDown('xs', width) ? (
                     <Grid item sm={6} xs={12}>
                       {currentUser && (
-                        <Typography className={classes.greeting} variant="h4" gutterBottom>
-                          Good Morning, {currentUser.name}.
-                        </Typography>
+                        <div style={{ backgroundColor: 'green' }}>
+                          <Typography className={classes.greeting} variant="h4" gutterBottom>
+                            Good Morning, {currentUser.name}.
+                          </Typography>
+                        </div>
                       )}
                     </Grid>
                   ) : (
