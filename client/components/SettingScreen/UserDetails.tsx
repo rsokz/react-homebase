@@ -9,8 +9,9 @@ import {
   createStyles,
   withStyles,
   Divider,
-  Grid
+  Button
 } from '@material-ui/core';
+import * as Type from '../../graphql/types';
 
 const styles = (theme: Theme) =>
   createStyles({
@@ -18,15 +19,23 @@ const styles = (theme: Theme) =>
       paddingTop: theme.spacing.unit * 2,
       paddingBottom: theme.spacing.unit * 3
     },
+    btn: {
+      marginTop: theme.spacing.unit * 4,
+      textTransform: 'none'
+    },
     title: {
       ...theme.mixins.gutters()
     },
     inputBox: {
-      padding: '50px 100px'
+      padding: '25px 0',
+      paddingLeft: 90,
+      paddingRight: 350
     }
   });
 
-interface Props extends WithStyles<typeof styles> {}
+interface Props extends WithStyles<typeof styles> {
+  user: Type.CurrentUser.Data['currentUser'];
+}
 
 export default withStyles(styles)(({ classes }: Props) => {
   const [name, setName] = useState('');
@@ -72,6 +81,9 @@ export default withStyles(styles)(({ classes }: Props) => {
             shrink: true
           }}
         />
+        <Button variant="contained" size="medium" color="primary" className={classes.btn}>
+          Save
+        </Button>
       </div>
     </Paper>
   );
