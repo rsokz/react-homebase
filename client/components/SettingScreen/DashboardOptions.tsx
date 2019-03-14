@@ -1,4 +1,5 @@
 import * as React from 'react';
+import _ from 'lodash';
 import { useState } from 'react';
 import {
   Paper,
@@ -15,6 +16,7 @@ import {
   Divider,
   Button
 } from '@material-ui/core';
+import { CheckCircle } from '@material-ui/icons';
 import * as Type from '../../graphql/types';
 import images from './images';
 
@@ -28,23 +30,40 @@ const styles = (theme: Theme) =>
       marginTop: theme.spacing.unit * 4,
       textTransform: 'none'
     },
+    checkMark: {
+      color: 'white',
+      position: 'absolute',
+      left: '37%',
+      top: '35%'
+    },
     gridList: {
-      flexWrap: 'wrap',
+      // flexWrap: 'wrap',
       // Promote the list into his own layer on Chrome. This cost memory but helps keeping high FPS.
-      transform: 'translateZ(0)'
+      // transform: 'translateZ(0)'
+      display: 'flex',
+      flexDirection: 'row',
+      textAlign: 'center'
     },
     inputBox: {
-      padding: '25px 0',
+      padding: '20px 0',
       paddingLeft: '7%',
       paddingRight: '10%'
     },
+    selected: {
+      border: '8px solid white'
+    },
     title: {
       ...theme.mixins.gutters()
+    },
+    websitesTxt: {
+      marginTop: theme.spacing.unit * 3,
+      marginBottom: theme.spacing.unit
     }
   });
 
 interface Props extends WithStyles<typeof styles> {
   user?: Type.CurrentUser.Data['currentUser'];
+  onSave: (settings: Type.CurrentUser.Data['currentUser']['settings']) => void;
 }
 
 export default withStyles(styles)(
@@ -52,16 +71,29 @@ export default withStyles(styles)(
     classes,
     user: {
       settings: { backgroundImage, websites }
-    }
+    },
+    onSave
   }: Props) => {
-    const [name, setName] = useState('');
+    const [backImage, setBackImage] = useState(backgroundImage);
+    const [topWebs, setTopWebs] = useState(websites);
 
     const maySave = () => {
-      // return !!(email && password && name);
+      return backImage !== backgroundImage || !_.isEqual(topWebs, websites);
     };
 
-    const handleNameChange = e => {
-      setName(e.target.value);
+    const handleImagePress = (e: React.MouseEvent<HTMLElement>, index: number) => {
+      setBackImage(index);
+    };
+
+    const handleWebsiteChange = (
+      e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+      index: number
+    ) => {
+      setTopWebs(topWebs.map((web, i) => (i === index ? { ...web, url: e.target.value } : web)));
+    };
+
+    const handleSave = () => {
+      onSave({ backgroundImage: backImage, websites: topWebs });
     };
 
     return (
@@ -74,62 +106,60 @@ export default withStyles(styles)(
           <Typography variant="button" gutterBottom>
             Background Image:
           </Typography>
-          <GridList className={classes.gridList} cellHeight={100} cols={5}>
-            {images.map(image => (
-              <GridListTile>
-                <img src={image} />
-              </GridListTile>
+          <div className={classes.gridList}>
+            {images.map((image, index) => (
+              <div
+                style={{ width: '25%', height: '11%' }}
+                onClick={e => handleImagePress(e, index)}
+              >
+                <img
+                  className={index === backImage && classes.selected}
+                  src={image}
+                  height="100%"
+                  width="97%"
+                />
+                {index === backImage && (
+                  <CheckCircle className={classes.checkMark} fontSize="large" />
+                )}
+              </div>
             ))}
-          </GridList>
-          <Typography style={{ marginTop: 24 }} variant="button" gutterBottom>
-            Top 4 Websites
+          </div>
+          <Typography className={classes.websitesTxt} variant="button" gutterBottom>
+            Top 4 Websites:
           </Typography>
           <Grid container direction="row" spacing={32}>
-            <Grid item xs={6}>
-              <Input
-                id="website-one"
-                value={websites[0] && websites[0].url}
-                // onChange={this.handleChange}
-                fullWidth
-              />
-              <FormHelperText id="website-one-helper">Website #1</FormHelperText>
-            </Grid>
-            <Grid item xs={6}>
-              <Input
-                id="website-two"
-                value={websites[1] && websites[1].url}
-                // onChange={this.handleChange}
-                fullWidth
-              />
-              <FormHelperText id="website-two-helper">Website #2</FormHelperText>
-            </Grid>
+            {Array.from({ length: 2 }, (_, k) => (
+              <Grid item xs={6} key={k}>
+                <Input
+                  id={`website-${k + 1}`}
+                  value={topWebs[k] && topWebs[k].url}
+                  onChange={e => handleWebsiteChange(e, k)}
+                  fullWidth
+                />
+                <FormHelperText id={`website-${k + 1}-helper`}>Website #{k + 1}</FormHelperText>
+              </Grid>
+            ))}
           </Grid>
           <Grid container direction="row" spacing={32}>
-            <Grid item xs={6}>
-              <Input
-                id="website-three"
-                value={websites[2] && websites[2].url}
-                // onChange={this.handleChange}
-                fullWidth
-              />
-              <FormHelperText id="website-three-helper">Website #3</FormHelperText>
-            </Grid>
-            <Grid item xs={6}>
-              <Input
-                id="website-four"
-                value={websites[3] && websites[3].url}
-                // onChange={this.handleChange}
-                fullWidth
-              />
-              <FormHelperText id="website-four-helper">Website #4</FormHelperText>
-            </Grid>
+            {Array.from({ length: 2 }, (_, k) => (
+              <Grid item xs={6} key={k + 2}>
+                <Input
+                  id={`website-${k + 3}`}
+                  value={topWebs[k + 2] && topWebs[k + 2].url}
+                  // onChange={this.handleChange}
+                  fullWidth
+                />
+                <FormHelperText id={`website-${k + 3}-helper`}>Website #{k + 3}</FormHelperText>
+              </Grid>
+            ))}
           </Grid>
           <Button
             variant="contained"
             size="medium"
             color="primary"
             className={classes.btn}
-            // disabled={!maySave()}
+            onClick={handleSave}
+            disabled={!maySave()}
           >
             Save
           </Button>

@@ -5,15 +5,25 @@ const User = mongoose.model('user');
 const updateName = async (email, name) => {
   try {
     const doc = await User.findOne({ email });
-    console.log('mongoUser', doc);
     doc.name = name;
 
     const user = await doc.save();
-    console.log('updated user', user);
     return user;
   } catch (err) {
     throw err;
   }
 };
 
-module.exports = { updateName };
+const updateSettings = async (email, settings) => {
+  try {
+    const doc = await User.findOne({ email });
+    doc.settings = settings;
+
+    const user = await doc.save();
+    return user;
+  } catch (err) {
+    throw err;
+  }
+};
+
+module.exports = { updateName, updateSettings };

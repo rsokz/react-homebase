@@ -15,6 +15,7 @@ export default () => {
   const [isLoaderStopped, setIsLoaderStopped] = useState(false);
 
   const loader = () => {
+    console.log('coords', coords);
     return (
       <div style={{ height: 92, width: 0 }}>
         <Lottie
@@ -41,6 +42,7 @@ export default () => {
       variables={{ lat: coords.latitude, long: coords.longitude }}
     >
       {({ data: { weather }, loading }) => {
+        console.log('here');
         setIsLoaderStopped(true);
         if (loading) {
           return loader();

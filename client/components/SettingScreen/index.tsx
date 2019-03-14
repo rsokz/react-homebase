@@ -1,16 +1,7 @@
 import * as React from 'react';
 import { useState } from 'react';
 import { Close } from '@material-ui/icons';
-import {
-  Fab,
-  Grid,
-  TextField,
-  Theme,
-  Typography,
-  createStyles,
-  withStyles,
-  WithStyles
-} from '@material-ui/core';
+import { Fab, Grid, Theme, createStyles, withStyles, WithStyles } from '@material-ui/core';
 // graphql
 import * as query from '../../graphql/queries';
 import { CurrentUser } from '../../graphql/types';
@@ -90,7 +81,20 @@ export default withStyles(styles)(({ classes, onClose }: Props) => {
                     </Mutation>
                   </Grid>
                   <Grid item>
-                    <DashboardOptions user={currentUser} />
+                    <Mutation mutation={mutation.updateSettings}>
+                      {updateSettings => (
+                        <DashboardOptions
+                          user={currentUser}
+                          onSave={settings => {
+                            updateSettings({
+                              variables: { settings },
+                              refetchQueries: [{ query: query.currentUser }],
+                              awaitRefetchQueries: true
+                            });
+                          }}
+                        />
+                      )}
+                    </Mutation>
                   </Grid>
                 </Grid>
               </Grid>
