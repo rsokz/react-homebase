@@ -83,7 +83,7 @@ export default withStyles(styles)(({ classes }: Props) => {
               return (
                 <div className={classes.gameBox}>
                   <Game post={post} />
-                  <Divider className={classes.divider} light />
+                  <Divider className={classes.divider} variant="inset" light />
                 </div>
               );
             });

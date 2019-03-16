@@ -22,7 +22,8 @@ const styles = (theme: Theme) =>
       borderRadius: 0
     },
     content: {
-      marginRight: '50px'
+      // marginRight: '50px'
+      padding: '0 10px'
     },
     listItem: {
       paddingBottom: 0
@@ -52,7 +53,7 @@ export default withStyles(styles)(({ classes, post }: Props) => {
           className={classes.content}
           primary={
             <Typography className={classes.teamName} variant="h6" color="textPrimary">
-              Knicks
+              Trail Blazers
             </Typography>
           }
         />
