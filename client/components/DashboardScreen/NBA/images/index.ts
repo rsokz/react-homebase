@@ -1,5 +1,5 @@
 const images = {
-  productHunt: require('./productHuntLogo.png')
+  nbaLogo: require('./nbaLogo.png')
 };
 
 export default images;

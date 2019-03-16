@@ -33,6 +33,7 @@ const styles = (theme: Theme) =>
       display: 'inline'
     },
     header: {
+      padding: '5px 15px',
       position: 'absolute'
     },
     list: {
@@ -54,7 +55,7 @@ export default withStyles(styles)(({ classes }: Props) => {
   return (
     <Paper className={classes.root} elevation={1}>
       <a className={classes.header} href="https://www.producthunt.com/" target="_blank">
-        <img src={images.productHunt} alt="product-hunt-logo" width="209" height="75" />
+        <img src={images.nbaLogo} width="88" height="60" />
       </a>
       <List className={classes.list}>
         <Query<Type.ProductHunt.Data> query={query.productHunt}>
