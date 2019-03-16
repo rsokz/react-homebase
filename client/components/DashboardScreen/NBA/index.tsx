@@ -14,7 +14,7 @@ import * as Type from '../../../graphql/types';
 import * as query from '../../../graphql/queries';
 import images from './images';
 // components
-import Post from './Post';
+import Game from './Game';
 
 const styles = (theme: Theme) =>
   createStyles({
@@ -23,6 +23,14 @@ const styles = (theme: Theme) =>
       height: '72%',
       overflow: 'auto',
       backgroundColor: 'rgba(255, 255, 255, 0.96);'
+    },
+    divider: {
+      marginTop: theme.spacing.unit
+    },
+    gameBox: {
+      width: '50%',
+      float: 'left',
+      display: 'inline'
     },
     header: {
       position: 'absolute'
@@ -72,10 +80,10 @@ export default withStyles(styles)(({ classes }: Props) => {
               );
             return products.posts.map(post => {
               return (
-                <React.Fragment>
-                  <Post post={post} />
-                  <Divider variant="inset" light />
-                </React.Fragment>
+                <div className={classes.gameBox}>
+                  <Game post={post} />
+                  <Divider className={classes.divider} light />
+                </div>
               );
             });
           }}

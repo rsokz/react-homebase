@@ -33,122 +33,122 @@ type TeamType =
 export const teams: { [key in TeamType]: { name: string; icon: string } } = {
   ATL: {
     name: 'Hawks',
-    icon: ''
+    icon: 'https://www.nba.com/.element/img/1.0/teamsites/logos/teamlogos_500x500/atl.png'
   },
   BOS: {
     name: 'Celtics',
-    icon: ''
+    icon: 'https://www.nba.com/.element/img/1.0/teamsites/logos/teamlogos_500x500/bos.png'
   },
   BKN: {
     name: 'Nets',
-    icon: ''
+    icon: 'https://www.nba.com/.element/img/1.0/teamsites/logos/teamlogos_500x500/bkn.png'
   },
   CHA: {
     name: 'Hornets',
-    icon: ''
+    icon: 'https://www.nba.com/.element/img/1.0/teamsites/logos/teamlogos_500x500/cha.png'
   },
   CHI: {
     name: 'Bulls',
-    icon: ''
+    icon: 'https://www.nba.com/.element/img/1.0/teamsites/logos/teamlogos_500x500/chi.png'
   },
   CLE: {
     name: 'Cavaliers',
-    icon: ''
+    icon: 'https://www.nba.com/.element/img/1.0/teamsites/logos/teamlogos_500x500/cle.png'
   },
   DAL: {
     name: 'Mavericks',
-    icon: ''
+    icon: 'https://www.nba.com/.element/img/1.0/teamsites/logos/teamlogos_500x500/dal.png'
   },
   DEN: {
     name: 'Nuggets',
-    icon: ''
+    icon: 'https://www.nba.com/.element/img/1.0/teamsites/logos/teamlogos_500x500/den.png'
   },
   DET: {
     name: 'Pistons',
-    icon: ''
+    icon: 'https://www.nba.com/.element/img/1.0/teamsites/logos/teamlogos_500x500/det.png'
   },
   GSW: {
     name: 'Warriors',
-    icon: ''
+    icon: 'https://www.nba.com/.element/img/1.0/teamsites/logos/teamlogos_500x500/gsw.png'
   },
   HOU: {
     name: 'Rockets',
-    icon: ''
+    icon: 'https://www.nba.com/.element/img/1.0/teamsites/logos/teamlogos_500x500/hou.png'
   },
   IND: {
     name: 'Pacers',
-    icon: ''
+    icon: 'https://www.nba.com/.element/img/1.0/teamsites/logos/teamlogos_500x500/ind.png'
   },
   LAC: {
     name: 'Clippers',
-    icon: ''
+    icon: 'https://www.nba.com/.element/img/1.0/teamsites/logos/teamlogos_500x500/lac.png'
   },
   LAL: {
     name: 'Lakers',
-    icon: ''
+    icon: 'https://www.nba.com/.element/img/1.0/teamsites/logos/teamlogos_500x500/lal.png'
   },
   MEM: {
     name: 'Grizzlies',
-    icon: ''
+    icon: 'https://www.nba.com/.element/img/1.0/teamsites/logos/teamlogos_500x500/mem.png'
   },
   MIA: {
     name: 'Heat',
-    icon: ''
+    icon: 'https://www.nba.com/.element/img/1.0/teamsites/logos/teamlogos_500x500/mia.png'
   },
   MIL: {
     name: 'Bucks',
-    icon: ''
+    icon: 'https://www.nba.com/.element/img/1.0/teamsites/logos/teamlogos_500x500/mil.png'
   },
   MIN: {
     name: 'Timberwolves',
-    icon: ''
+    icon: 'https://www.nba.com/.element/img/1.0/teamsites/logos/teamlogos_500x500/min.png'
   },
   NOP: {
     name: 'Pelicans',
-    icon: ''
+    icon: 'https://www.nba.com/.element/img/1.0/teamsites/logos/teamlogos_500x500/nop.png'
   },
   NYK: {
     name: 'Knicks',
-    icon: ''
+    icon: 'https://www.nba.com/.element/img/1.0/teamsites/logos/teamlogos_500x500/nyk.png'
   },
   OKC: {
     name: 'Thunder',
-    icon: ''
+    icon: 'https://www.nba.com/.element/img/1.0/teamsites/logos/teamlogos_500x500/okc.png'
   },
   ORL: {
     name: 'Magic',
-    icon: ''
+    icon: 'https://www.nba.com/.element/img/1.0/teamsites/logos/teamlogos_500x500/orl.png'
   },
   PHI: {
     name: '76ers',
-    icon: ''
+    icon: 'https://www.nba.com/.element/img/1.0/teamsites/logos/teamlogos_500x500/phi.png'
   },
   PHX: {
     name: 'Suns',
-    icon: ''
+    icon: 'https://www.nba.com/.element/img/1.0/teamsites/logos/teamlogos_500x500/phx.png'
   },
   POR: {
     name: 'Trail Blazers',
-    icon: ''
+    icon: 'https://www.nba.com/.element/img/1.0/teamsites/logos/teamlogos_500x500/por.png'
   },
   SAC: {
     name: 'Kings',
-    icon: ''
+    icon: 'https://www.nba.com/.element/img/1.0/teamsites/logos/teamlogos_500x500/sac.png'
   },
   SAS: {
     name: 'Spurs',
-    icon: ''
+    icon: 'https://www.nba.com/.element/img/1.0/teamsites/logos/teamlogos_500x500/sas.png'
   },
   TOR: {
     name: 'Raptors',
-    icon: ''
+    icon: 'https://www.nba.com/.element/img/1.0/teamsites/logos/teamlogos_500x500/tor.png'
   },
   UTA: {
     name: 'Jazz',
-    icon: ''
+    icon: 'https://www.nba.com/.element/img/1.0/teamsites/logos/teamlogos_500x500/uta.png'
   },
   WAS: {
     name: 'Wizards',
-    icon: ''
+    icon: 'https://www.nba.com/.element/img/1.0/teamsites/logos/teamlogos_500x500/was.png'
   }
 };

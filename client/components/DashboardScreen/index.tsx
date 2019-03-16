@@ -21,6 +21,7 @@ import { Query } from 'react-apollo';
 import SettingScreen from '../SettingScreen';
 import Weather from './Weather';
 import ProductHunt from './ProductHunt';
+import NBA from './NBA';
 
 import BackgroundImages from '../SettingScreen/images';
 
@@ -174,7 +175,7 @@ export default withWidth()(
                       <ProductHunt />
                     </Grid>
                     <Grid container item md={6} sm={12} justify="center">
-                      <ProductHunt />
+                      <NBA />
                     </Grid>
                   </Grid>
                 </Grid>

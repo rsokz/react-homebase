@@ -9,8 +9,6 @@ import {
   createStyles,
   withStyles,
   Grid,
-  GridList,
-  GridListTile,
   Input,
   FormHelperText,
   Divider,
@@ -78,6 +76,8 @@ export default withStyles(styles)(
     const [topWebs, setTopWebs] = useState(websites);
 
     const maySave = () => {
+      console.log('websites', websites);
+      console.log('topWebs', topWebs);
       return backImage !== backgroundImage || !_.isEqual(topWebs, websites);
     };
 

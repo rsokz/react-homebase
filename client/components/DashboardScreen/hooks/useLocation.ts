@@ -7,9 +7,11 @@ export default () => {
   useEffect(() => {
     window.navigator.geolocation.getCurrentPosition(
       position => setCoords(position.coords),
-      err => setErrMessage(err.message)
+      err => setErrMessage(err.message),
+      { enableHighAccuracy: true, timeout: 10000 }
     );
   }, []);
 
+  console.log('error', errMessage);
   return [coords, errMessage];
 };
