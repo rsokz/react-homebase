@@ -22,7 +22,6 @@ const styles = (theme: Theme) =>
       borderRadius: 0
     },
     content: {
-      // marginRight: '50px'
       padding: '0 10px'
     },
     listItem: {

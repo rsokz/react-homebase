@@ -22,7 +22,7 @@ const styles = (theme: Theme) =>
       width: '85%',
       height: '72%',
       overflow: 'auto',
-      backgroundColor: 'rgba(255, 255, 255, 0.96);'
+      backgroundColor: 'rgba(255, 255, 255, 0.95);'
     },
     header: {
       position: 'absolute'

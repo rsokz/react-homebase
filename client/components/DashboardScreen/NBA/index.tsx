@@ -22,7 +22,7 @@ const styles = (theme: Theme) =>
       width: '85%',
       height: '72%',
       overflow: 'auto',
-      backgroundColor: 'rgba(255, 255, 255, 0.96);'
+      backgroundColor: 'rgba(255, 255, 255, 0.95);'
     },
     divider: {
       marginTop: theme.spacing.unit
@@ -67,7 +67,7 @@ export default withStyles(styles)(({ classes }: Props) => {
                     options={{
                       loop: true,
                       autoplay: true,
-                      animationData: require('./ph-loader.json'),
+                      animationData: require('./nba-loader.json'),
                       rendererSettings: {
                         preserveAspectRatio: 'xMidYMid slice'
                       }
@@ -83,7 +83,7 @@ export default withStyles(styles)(({ classes }: Props) => {
               return (
                 <div className={classes.gameBox}>
                   <Game post={post} />
-                  <Divider className={classes.divider} variant="inset" light />
+                  <Divider className={classes.divider} light />
                 </div>
               );
             });

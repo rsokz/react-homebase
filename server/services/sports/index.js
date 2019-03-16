@@ -1,27 +1,17 @@
 /**
- * @file MySportsFeed service
- * @link https://www.mysportsfeeds.com/data-feeds/api-docs/
+ * @file NBA service
+ * @link
  */
 const axios = require('axios');
-const btoa = require('btoa');
 
 const getNBAGames = async () => {
   try {
-    const seasonName = 'current';
-    const date = '20190228';
+    const date = '20190316';
     // build request URL
-    const URL = `https://api.mysportsfeeds.com/v1.2/pull/nba/${seasonName}/daily_game_schedule.json?fordate=${date}`;
-
-    // build request config
-    // prettier-ignore
-    const config = {
-      headers: {
-				'Authorization': `Basic ${btoa("47a86413-828b-4d72-a217-e3460b:cykachmo10")}`
-      },
-    };
+    const URL = `http://data.nba.net/10s/prod/v1/${date}/scoreboard.json`;
 
     // get response
-    const response = await axios.get(URL, config);
+    const response = await axios.get(URL);
 
     // check error
     if (response.status !== 200) {
