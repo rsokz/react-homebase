@@ -9,8 +9,10 @@ const NBAType = new GraphQLObjectType({
         new GraphQLObjectType({
           name: 'game',
           fields: {
+            gameId: { type: GraphQLString },
             isGameActivated: { type: GraphQLBoolean },
             statusNum: { type: GraphQLInt },
+            startTimeEastern: { type: GraphQLString },
             period: {
               type: new GraphQLObjectType({
                 name: 'period',
