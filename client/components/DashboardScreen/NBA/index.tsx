@@ -58,8 +58,8 @@ export default withStyles(styles)(({ classes }: Props) => {
         <img src={images.nbaLogo} width="88" height="60" />
       </a>
       <List className={classes.list}>
-        <Query<Type.ProductHunt.Data> query={query.productHunt}>
-          {({ data: { products }, loading }) => {
+        <Query<Type.NBAGames.Data> query={query.nbaGames}>
+          {({ data: { nba }, loading }) => {
             if (loading)
               return (
                 <div className={classes.loader}>
@@ -79,10 +79,10 @@ export default withStyles(styles)(({ classes }: Props) => {
                   />
                 </div>
               );
-            return products.posts.map(post => {
+            return nba.games.map(game => {
               return (
                 <div className={classes.gameBox}>
-                  <Game post={post} />
+                  <Game game={game} />
                   <Divider className={classes.divider} light />
                 </div>
               );
@@ -93,6 +93,3 @@ export default withStyles(styles)(({ classes }: Props) => {
     </Paper>
   );
 });
-function newFunction(post: Type.ProductHunt.Post) {
-  return console.log(post);
-}

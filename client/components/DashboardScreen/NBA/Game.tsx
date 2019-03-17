@@ -11,7 +11,7 @@ import {
   createStyles,
   Avatar
 } from '@material-ui/core';
-import ArrowDropUpIcon from '@material-ui/icons/ArrowDropUp';
+import { teamMap } from '../utils/nba';
 import * as Type from '../../../graphql/types';
 
 const styles = (theme: Theme) =>
@@ -38,48 +38,33 @@ const styles = (theme: Theme) =>
   });
 
 interface Props extends WithStyles<typeof styles> {
-  post: Type.ProductHunt.Post;
+  game: Type.NBAGames.Game;
 }
 
-export default withStyles(styles)(({ classes, post }: Props) => {
+export default withStyles(styles)(({ classes, game }: Props) => {
+  const teams = [game.vTeam, game.hTeam];
   return (
     <div>
-      <ListItem className={classes.listItem} key={post.id}>
-        <ListItemAvatar>
-          <Avatar className={classes.avatar} src={post.thumbnail.image_url} />
-        </ListItemAvatar>
-        <ListItemText
-          className={classes.content}
-          primary={
-            <Typography className={classes.teamName} variant="h6" color="textPrimary">
-              Trail Blazers
+      {Array.from({ length: 2 }, (_, k) => (
+        <ListItem className={classes.listItem} key={teams[k].teamId}>
+          <ListItemAvatar>
+            <Avatar className={classes.avatar} src={teamMap[teams[k].triCode].icon} />
+          </ListItemAvatar>
+          <ListItemText
+            className={classes.content}
+            primary={
+              <Typography className={classes.teamName} variant="h6" color="textPrimary">
+                {teamMap[teams[k].triCode].name}
+              </Typography>
+            }
+          />
+          <ListItemSecondaryAction>
+            <Typography className={classes.scoreTxt} variant="button">
+              {teams[k].score}
             </Typography>
-          }
-        />
-        <ListItemSecondaryAction>
-          <Typography className={classes.scoreTxt} variant="button">
-            91
-          </Typography>
-        </ListItemSecondaryAction>
-      </ListItem>
-      <ListItem className={classes.listItem} key={post.id}>
-        <ListItemAvatar>
-          <Avatar className={classes.avatar} src={post.thumbnail.image_url} />
-        </ListItemAvatar>
-        <ListItemText
-          className={classes.content}
-          primary={
-            <Typography className={classes.teamName} variant="h6" color="textPrimary">
-              Suns
-            </Typography>
-          }
-        />
-        <ListItemSecondaryAction>
-          <Typography className={classes.scoreTxt} variant="button">
-            84
-          </Typography>
-        </ListItemSecondaryAction>
-      </ListItem>
+          </ListItemSecondaryAction>
+        </ListItem>
+      ))}
     </div>
   );
 });

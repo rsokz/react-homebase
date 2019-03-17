@@ -30,7 +30,7 @@ type TeamType =
   | 'UTA'
   | 'WAS';
 
-export const teams: { [key in TeamType]: { name: string; icon: string } } = {
+export const teamMap: { [key in TeamType]: { name: string; icon: string } } = {
   ATL: {
     name: 'Hawks',
     icon: 'https://www.nba.com/.element/img/1.0/teamsites/logos/teamlogos_500x500/atl.png'

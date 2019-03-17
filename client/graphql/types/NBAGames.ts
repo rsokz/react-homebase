@@ -1,5 +1,7 @@
 export interface Data {
-  games: Game[];
+  nba: {
+    games: Game[];
+  };
 }
 
 export interface Game {
@@ -7,7 +9,20 @@ export interface Game {
   isGameActivated: boolean;
   statusNum: number;
   startTimeEastern: string;
-  period: { current: number; isHalftime: boolean };
-  vTeam: { triCode: string; win: string; loss: string; score: string };
-  hTeam: { triCode: string; win: string; loss: string; score: string };
+  clock: string;
+  period: { current: number; isHalftime: boolean; isEndOfPeriod: boolean };
+  vTeam: {
+    teamId: string;
+    triCode: string;
+    win: string;
+    loss: string;
+    score: string;
+  };
+  hTeam: {
+    teamId: string;
+    triCode: string;
+    win: string;
+    loss: string;
+    score: string;
+  };
 }

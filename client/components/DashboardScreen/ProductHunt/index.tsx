@@ -84,6 +84,3 @@ export default withStyles(styles)(({ classes }: Props) => {
     </Paper>
   );
 });
-function newFunction(post: Type.ProductHunt.Post) {
-  return console.log(post);
-}

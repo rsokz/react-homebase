@@ -15,7 +15,6 @@ import UserDetails from './UserDetails';
 const styles = (theme: Theme) =>
   createStyles({
     root: {
-      // flexGrow: 1,
       backgroundColor: 'rgba(0, 0, 0, 0.5)',
       padding: theme.spacing.unit * 2,
       minHeight: '100vh'
@@ -28,12 +27,7 @@ interface Props extends WithStyles<typeof styles> {
 }
 
 export default withStyles(styles)(({ classes, onClose }: Props) => {
-  const [name, setName] = useState('');
   const [updateComplete, setUpdateComplete] = useState(false);
-
-  const handleNameChange = e => {
-    setName(e.target.value);
-  };
 
   const handleSettingsClose = () => {
     onClose();
@@ -42,8 +36,6 @@ export default withStyles(styles)(({ classes, onClose }: Props) => {
   const handleSetUpdateComplete = () => {
     setUpdateComplete(true);
   };
-
-  const handleNameUpdate = () => {};
 
   return (
     <Query<CurrentUser.Data> query={query.currentUser}>
