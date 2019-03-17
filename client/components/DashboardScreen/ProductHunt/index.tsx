@@ -19,8 +19,8 @@ import Post from './Post';
 const styles = (theme: Theme) =>
   createStyles({
     root: {
-      width: '85%',
-      height: '72%',
+      width: '90%',
+      height: '75%',
       overflow: 'auto',
       backgroundColor: 'rgba(255, 255, 255, 0.95);'
     },

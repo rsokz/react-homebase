@@ -29,9 +29,6 @@ const styles = (theme: Theme) =>
   createStyles({
     root: {
       display: 'block',
-      // backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0) 30%), url(${
-      //   BackgroundImages[2]
-      // })`,
       backgroundRepeat: 'no-repeat',
       backgroundPosition: 'center center',
       backgroundSize: 'cover',
@@ -40,7 +37,7 @@ const styles = (theme: Theme) =>
       padding: theme.spacing.unit * 2
     },
     content: {
-      paddingTop: theme.spacing.unit * 6
+      paddingTop: theme.spacing.unit * 5
     },
     greeting: {
       color: 'white',
@@ -54,6 +51,7 @@ const styles = (theme: Theme) =>
     modal: {
       overflow: 'scroll'
     },
+    sportBox: { width: '100%' },
     websites: {
       display: 'flex',
       flexDirection: 'row',
@@ -174,8 +172,22 @@ export default withWidth()(
                     <Grid container item md={6} sm={12} justify="center">
                       <ProductHunt />
                     </Grid>
-                    <Grid container item md={6} sm={12} justify="center">
-                      <NBA />
+                    <Grid
+                      container
+                      item
+                      md={6}
+                      sm={12}
+                      alignItems="center"
+                      justify="flex-end"
+                      direction="column"
+                      spacing={24}
+                    >
+                      <Grid item className={classes.sportBox}>
+                        <NBA />
+                      </Grid>
+                      <Grid item className={classes.sportBox}>
+                        <NBA />
+                      </Grid>
                     </Grid>
                   </Grid>
                 </Grid>

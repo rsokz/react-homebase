@@ -19,9 +19,10 @@ import Game from './Game';
 const styles = (theme: Theme) =>
   createStyles({
     root: {
-      width: '85%',
-      height: '72%',
+      width: '90%',
+      height: '36%',
       overflow: 'auto',
+      marginLeft: '4%',
       backgroundColor: 'rgba(255, 255, 255, 0.95);'
     },
     divider: {
@@ -54,7 +55,7 @@ interface Props extends WithStyles<typeof styles> {}
 export default withStyles(styles)(({ classes }: Props) => {
   return (
     <Paper className={classes.root} elevation={1}>
-      <a className={classes.header} href="https://www.producthunt.com/" target="_blank">
+      <a className={classes.header} href="https://www.nba.com/scores#/" target="_blank">
         <img src={images.nbaLogo} width="81" height="55" />
       </a>
       <List className={classes.list}>
