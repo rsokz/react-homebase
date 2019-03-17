@@ -26,11 +26,12 @@ const styles = (theme: Theme) =>
     },
     gameBox: {
       borderRight: '1px solid rgba(0, 0, 0, 0.08)',
-      paddingLeft: '0.5em',
-      paddingRight: '0.5em'
+      paddingLeft: '0.7em',
+      paddingRight: '0.7em'
     },
     gameInfoTxt: {
       fontSize: '0.7rem',
+      fontWeight: 600,
       lineHeight: 1,
       marginTop: theme.spacing.unit,
       textAlign: 'center'
@@ -59,6 +60,9 @@ interface Props extends WithStyles<typeof styles> {
 
 export default withStyles(styles)(({ classes, game }: Props) => {
   const teams = [game.vTeam, game.hTeam];
+  const winner = teams[0].score > teams[1].score ? 0 : 1;
+  const gameDone = game.statusNum === 3;
+
   return (
     <div className={classes.gameBox}>
       {Array.from({ length: 2 }, (_, k) => (
@@ -75,14 +79,25 @@ export default withStyles(styles)(({ classes, game }: Props) => {
             }
           />
           <ListItemSecondaryAction className={classes.teamInfoTxt}>
-            <Typography className={classes.scoreTxt} variant="button">
+            <Typography
+              className={classes.scoreTxt}
+              variant="button"
+              style={
+                game.statusNum === 2 || (gameDone && winner === k) ? { fontWeight: 800 } : undefined
+              }
+            >
               {extractGameScore(game, teams[k])}
             </Typography>
           </ListItemSecondaryAction>
         </ListItem>
       ))}
-      <Typography className={classes.gameInfoTxt} variant="h6" color="textPrimary">
-        {extractGameInfo(game, teams[k])}
+      <Typography
+        className={classes.gameInfoTxt}
+        variant="h6"
+        color="textPrimary"
+        style={game.statusNum === 2 ? { color: '#DD0000' } : undefined}
+      >
+        {extractGameInfo(game)}
       </Typography>
     </div>
   );

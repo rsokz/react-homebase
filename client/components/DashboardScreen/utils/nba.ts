@@ -155,18 +155,16 @@ export const teamMap: { [key in TeamType]: { name: string; icon: string } } = {
   }
 };
 
-export const extractGameInfo = (
-  game: Type.NBAGames.Game,
-  team: Type.NBAGames.Game['hTeam'] | Type.NBAGames.Game['vTeam']
-) => {
+export const extractGameInfo = (game: Type.NBAGames.Game) => {
   let info: string = '';
+  const period = game.period.current > 4 ? `OT ${game.period.current - 4}` : game.period.current;
 
   if (game.statusNum === 1) {
     info = game.startTimeEastern;
   } else if (game.statusNum === 2) {
-    info = game.period.isHalftime ? 'Halftime' : `${game.clock} - ${game.period.current}`;
+    info = game.period.isHalftime ? 'Halftime' : `${game.clock} - ${period}`;
   } else {
-    info = 'Final';
+    info = game.period.current > 4 ? `Final / OT${game.period.current - 4}` : 'Final';
   }
 
   return info;
@@ -180,8 +178,6 @@ export const extractGameScore = (
 
   if (game.statusNum === 1) {
     score = `${team.win}-${team.loss}`;
-  } else if (game.statusNum === 2) {
-    score = team.score;
   } else {
     score = team.score;
   }
