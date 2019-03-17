@@ -11,7 +11,7 @@ import {
   createStyles,
   Avatar
 } from '@material-ui/core';
-import { teamMap } from '../utils/nba';
+import { extractGameInfo, extractGameScore, teamMap } from '../utils/nba';
 import * as Type from '../../../graphql/types';
 
 const styles = (theme: Theme) =>
@@ -24,10 +24,26 @@ const styles = (theme: Theme) =>
     content: {
       padding: '0 10px'
     },
-    listItem: {
-      paddingBottom: 0
+    gameBox: {
+      borderRight: '1px solid rgba(0, 0, 0, 0.08)',
+      paddingLeft: '0.5em',
+      paddingRight: '0.5em'
     },
-    teamName: {
+    gameInfoTxt: {
+      fontSize: '0.7rem',
+      lineHeight: 1,
+      marginTop: theme.spacing.unit,
+      textAlign: 'center'
+    },
+    listItem: {
+      paddingBottom: 0,
+      paddingLeft: 0,
+      paddingtop: 4
+    },
+    teamInfoTxt: {
+      top: '60%'
+    },
+    teamNameTxt: {
       fontSize: '0.9rem',
       lineHeight: 1.2
     },
@@ -44,7 +60,7 @@ interface Props extends WithStyles<typeof styles> {
 export default withStyles(styles)(({ classes, game }: Props) => {
   const teams = [game.vTeam, game.hTeam];
   return (
-    <div>
+    <div className={classes.gameBox}>
       {Array.from({ length: 2 }, (_, k) => (
         <ListItem className={classes.listItem} key={teams[k].teamId}>
           <ListItemAvatar>
@@ -53,18 +69,21 @@ export default withStyles(styles)(({ classes, game }: Props) => {
           <ListItemText
             className={classes.content}
             primary={
-              <Typography className={classes.teamName} variant="h6" color="textPrimary">
+              <Typography className={classes.teamNameTxt} variant="h6" color="textPrimary">
                 {teamMap[teams[k].triCode].name}
               </Typography>
             }
           />
-          <ListItemSecondaryAction>
+          <ListItemSecondaryAction className={classes.teamInfoTxt}>
             <Typography className={classes.scoreTxt} variant="button">
-              {teams[k].score}
+              {extractGameScore(game, teams[k])}
             </Typography>
           </ListItemSecondaryAction>
         </ListItem>
       ))}
+      <Typography className={classes.gameInfoTxt} variant="h6" color="textPrimary">
+        {extractGameInfo(game, teams[k])}
+      </Typography>
     </div>
   );
 });

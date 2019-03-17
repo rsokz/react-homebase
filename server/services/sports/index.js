@@ -1,6 +1,6 @@
 /**
  * @file NBA service
- * @link
+ * @link http://data.nba.net/10s/prod/v1/today.json
  */
 const axios = require('axios');
 

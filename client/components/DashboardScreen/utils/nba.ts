@@ -1,3 +1,5 @@
+import * as Type from '../../../graphql/types';
+
 type TeamType =
   | 'ATL'
   | 'BOS'
@@ -151,4 +153,38 @@ export const teamMap: { [key in TeamType]: { name: string; icon: string } } = {
     name: 'Wizards',
     icon: 'https://www.nba.com/.element/img/1.0/teamsites/logos/teamlogos_500x500/was.png'
   }
+};
+
+export const extractGameInfo = (
+  game: Type.NBAGames.Game,
+  team: Type.NBAGames.Game['hTeam'] | Type.NBAGames.Game['vTeam']
+) => {
+  let info: string = '';
+
+  if (game.statusNum === 1) {
+    info = game.startTimeEastern;
+  } else if (game.statusNum === 2) {
+    info = game.period.isHalftime ? 'Halftime' : `${game.clock} - ${game.period.current}`;
+  } else {
+    info = 'Final';
+  }
+
+  return info;
+};
+
+export const extractGameScore = (
+  game: Type.NBAGames.Game,
+  team: Type.NBAGames.Game['hTeam'] | Type.NBAGames.Game['vTeam']
+) => {
+  let score: string = '';
+
+  if (game.statusNum === 1) {
+    score = `${team.win}-${team.loss}`;
+  } else if (game.statusNum === 2) {
+    score = team.score;
+  } else {
+    score = team.score;
+  }
+
+  return score;
 };

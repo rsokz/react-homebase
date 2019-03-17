@@ -25,7 +25,7 @@ const styles = (theme: Theme) =>
       backgroundColor: 'rgba(255, 255, 255, 0.95);'
     },
     divider: {
-      marginTop: theme.spacing.unit
+      margin: theme.spacing.unit
     },
     gameBox: {
       width: '50%',
@@ -33,7 +33,7 @@ const styles = (theme: Theme) =>
       display: 'inline'
     },
     header: {
-      padding: '5px 15px',
+      padding: '7px 17px',
       position: 'absolute'
     },
     list: {
@@ -55,7 +55,7 @@ export default withStyles(styles)(({ classes }: Props) => {
   return (
     <Paper className={classes.root} elevation={1}>
       <a className={classes.header} href="https://www.producthunt.com/" target="_blank">
-        <img src={images.nbaLogo} width="88" height="60" />
+        <img src={images.nbaLogo} width="81" height="55" />
       </a>
       <List className={classes.list}>
         <Query<Type.NBAGames.Data> query={query.nbaGames}>
