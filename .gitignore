@@ -4,6 +4,10 @@ node_modules/
 npm-debug.log
 yarn-error.log
 
+# OSX
+#
+.DS_Store
+
 # dot folders
 #
 .*/
