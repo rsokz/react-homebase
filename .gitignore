@@ -4,12 +4,9 @@ node_modules/
 npm-debug.log
 yarn-error.log
 
-# server cache
+# dot folders
 #
-.awcache/
+.*/
 
-# Visual Studio Code
-#
-.vscode/
 
 
