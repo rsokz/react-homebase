@@ -13,6 +13,23 @@
 
 ## Features
 
+> dev features
+
+- 100% function components with React Hooks
+- Fully TypeScript
+- Graphql & Mongo
+- Passport authentication
+- Express server
+- Material UI
+
+> user features
+
+- Product Hunt news
+- NBA information for games of the day
+- Customizable top 4 websites
+- Current weather report
+- Customizable dashboard background
+
 ## Usage
 
 Clone
@@ -37,7 +54,12 @@ yarn dev
 
 ## Built With
 
-## To-Do
+## To-Do (v2)
+
+- [ ] Allow URL link for dashboard background image
+- [ ] Additional sports feeds (NFL, NCAAF, etc.)
+- [ ] Additional news feeds (Techcrunch)
+- [ ] Customizable section layouting
 
 ## Meta
 
