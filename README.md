@@ -11,17 +11,25 @@
 
 ## Live Demo
 
-## Key Features
+## Features
 
 ## Usage
 
-Install dependecies:
+Clone
+
+```sh
+git clone https://github.com/rsokz/awesome-dashboard.git
+```
+
+Setup
+
+> install dependencies
 
 ```sh
 yarn
 ```
 
-Start server:
+> Start server:
 
 ```sh
 yarn dev
