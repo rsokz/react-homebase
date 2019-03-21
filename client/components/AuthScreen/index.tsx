@@ -23,7 +23,8 @@ const styles = createStyles({
   },
   paper: {
     paddingBottom: '10px',
-    height: '49%'
+    height: '49%',
+    width: '75%'
   },
   tabs: {
     background: 'linear-gradient(45deg, #fe6b8b 3%, #ff8e53 90%)',
@@ -60,7 +61,8 @@ export default withStyles(styles)(({ classes, history }: Props) => {
         alignItems="center"
         spacing={40}
       >
-        <Grid item xs={6}>
+        <Grid container item xs={4} style={{ backgroundColor: 'green', height: '100%' }} />
+        <Grid container item xs={8} alignItems="center">
           <Paper className={classes.paper} square>
             <Tabs
               className={classes.tabs}

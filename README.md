@@ -16,7 +16,7 @@
 > dev features
 
 - 100% function components with React Hooks
-- Fully TypeScript
+- Fully TypeScript Client
 - Graphql & Mongo
 - Passport authentication
 - Express server
@@ -60,14 +60,7 @@ yarn dev
 - [ ] Additional sports feeds (NFL, NCAAF, etc.)
 - [ ] Additional news feeds (Techcrunch)
 - [ ] Customizable section layouting
-
-## Meta
-
-Your Name – [@YourTwitter](https://twitter.com/dbader_org) – YourEmail@example.com
-
-Distributed under the XYZ license. See `LICENSE` for more information.
-
-[https://github.com/yourname/github-link](https://github.com/dbader/)
+- [ ] Convert to use Firebase (Authetication & Firestore)
 
 <!-- Markdown link & img dfn's -->
 

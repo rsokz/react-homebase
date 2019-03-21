@@ -1,17 +1,14 @@
 {
-  "name": "users",
+  "name": "awesome-dashboard",
   "version": "1.0.0",
-  "description": "Starter pack for an auth-included graphql project",
   "repository": {
     "type": "git",
-    "url": "github.com/stephengrider"
+    "url": "https://github.com/rsokz/awesome-dashboard.git"
   },
   "main": "index.js",
   "scripts": {
     "dev": "nodemon index.js --ignore client"
   },
-  "author": "",
-  "license": "ISC",
   "dependencies": {
     "@babel/core": "^7.0.0",
     "@babel/preset-env": "^7.0.0",
