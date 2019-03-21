@@ -17,6 +17,7 @@ import * as query from '../../graphql/queries';
 import SignInForm from './SignInForm';
 import SignUpForm from './SignUpForm';
 import BackgroundImages from '../SettingScreen/images';
+import { generateGreeting } from '../DashboardScreen/utils/greeting';
 
 const styles = createStyles({
   root: {
@@ -89,7 +90,7 @@ export default withStyles(styles)(({ classes, history }: Props) => {
               gutterBottom
               style={{ color: 'white' }}
             >
-              Good Morning!
+              {generateGreeting()}, Friend!
             </Typography>
             <Typography className={classes.actionTxt} variant="h5">
               Sign in to enjoy your personal {'\n'}

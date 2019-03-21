@@ -22,6 +22,8 @@ import SettingScreen from '../SettingScreen';
 import Weather from './Weather';
 import ProductHunt from './ProductHunt';
 import NBA from './NBA';
+// utils
+import { generateGreeting } from './utils/greeting';
 
 import BackgroundImages from '../SettingScreen/images';
 
@@ -104,7 +106,7 @@ export default withWidth()(
                       {currentUser && (
                         <React.Fragment>
                           <Typography className={classes.greeting} variant="h4" gutterBottom>
-                            Good Morning, {currentUser.name}.
+                            {generateGreeting()}, {currentUser.name}.
                           </Typography>
                           <div className={classes.websites}>
                             {currentUser.settings.websites.map(website => (
@@ -128,7 +130,7 @@ export default withWidth()(
                       {currentUser && (
                         <React.Fragment>
                           <Typography className={classes.greeting} variant="h4" gutterBottom>
-                            Good Morning, {currentUser.name}.
+                            {generateGreeting()}, {currentUser.name}.
                           </Typography>
                           <div className={classes.websites}>
                             {currentUser.settings.websites.map(website => (
