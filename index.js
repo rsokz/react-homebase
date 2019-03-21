@@ -1,5 +1,5 @@
 const app = require('./server/server');
 
-app.listen(4000, () => {
+app.listen(process.env.PORT || 5000, () => {
   console.log('Listening');
 });
