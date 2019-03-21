@@ -1,6 +1,5 @@
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const styledComponentsTransformer = require('typescript-plugin-styled-components').default;
 const { CheckerPlugin } = require('awesome-typescript-loader');
 
 module.exports = {
@@ -24,9 +23,6 @@ module.exports = {
       {
         test: /\.tsx?$/,
         loader: 'awesome-typescript-loader',
-        options: {
-          getCustomTransformers: () => ({ before: [styledComponentsTransformer] })
-        },
         exclude: /node_modules/
       },
       {

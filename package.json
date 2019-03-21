@@ -7,7 +7,7 @@
   },
   "main": "index.js",
   "scripts": {
-    "dev": "nodemon index.js --ignore client",
+    "dev": "nodemon index.js --ignore client/",
     "start": "node index.js"
   },
   "dependencies": {
@@ -75,8 +75,7 @@
     "eslint-plugin-react-hooks": "^1.2.0",
     "file-loader": "^3.0.1",
     "image-webpack-loader": "^4.6.0",
-    "prettier": "^1.16.4",
-    "typescript-plugin-styled-components": "^1.2.0"
+    "prettier": "^1.16.4"
   },
   "engines": {
     "node": "11.12.0"
