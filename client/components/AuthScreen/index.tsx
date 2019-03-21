@@ -83,7 +83,6 @@ export default withStyles(styles)(({ classes, history }: Props) => {
       <Grid container style={{ backgroundColor: 'rgba(1, 1, 1, 0.5)' }}>
         <Grid container item md={6} sm={12}>
           <div className={classes.infoBox}>
-            {/* <img src={images.awesomeDashboardIcon} alt="dashboard-icon" width="170" height="185" /> */}
             <Typography
               className={classes.greetingTxt}
               variant="h2"
@@ -93,8 +92,7 @@ export default withStyles(styles)(({ classes, history }: Props) => {
               {generateGreeting()}, Friend!
             </Typography>
             <Typography className={classes.actionTxt} variant="h5">
-              Sign in to enjoy your personal {'\n'}
-              dashboard experience
+              Sign in to enjoy your personal dashboard experience
             </Typography>
           </div>
         </Grid>

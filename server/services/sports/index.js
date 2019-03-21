@@ -3,10 +3,12 @@
  * @link http://data.nba.net/10s/prod/v1/today.json
  */
 const axios = require('axios');
+const moment = require('moment');
 
 const getNBAGames = async () => {
   try {
-    const date = '20190316';
+    const date = moment(new Date()).format('YYYYMMDD');
+
     // build request URL
     const URL = `http://data.nba.net/10s/prod/v1/${date}/scoreboard.json`;
 
