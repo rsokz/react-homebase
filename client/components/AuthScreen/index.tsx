@@ -10,9 +10,6 @@ import SignUpForm from './SignUpForm';
 
 const styles = createStyles({
   root: {
-    flexGrow: 1
-  },
-  grid: {
     minHeight: '100vh'
   },
   indicator: {
@@ -24,7 +21,7 @@ const styles = createStyles({
   paper: {
     paddingBottom: '10px',
     height: '49%',
-    width: '75%'
+    width: '70%'
   },
   tabs: {
     background: 'linear-gradient(45deg, #fe6b8b 3%, #ff8e53 90%)',
@@ -52,74 +49,72 @@ export default withStyles(styles)(({ classes, history }: Props) => {
   };
 
   return (
-    <div className={classes.root}>
-      <Grid
-        className={classes.grid}
-        container
-        direction="row"
-        justify="center"
-        alignItems="center"
-        spacing={40}
-      >
-        <Grid container item xs={4} style={{ backgroundColor: 'green', height: '100%' }} />
-        <Grid container item xs={8} alignItems="center">
-          <Paper className={classes.paper} square>
-            <Tabs
-              className={classes.tabs}
-              classes={{ indicator: classes.indicator }}
-              value={tabIndex}
-              onChange={handleTabChange}
-              indicatorColor="primary"
-              variant="fullWidth"
+    <Grid
+      className={classes.root}
+      container
+      // direction="row"
+      // justify="center"
+      // alignItems="center"
+      // spacing={40}
+    >
+      <Grid container item xs={4} style={{ backgroundColor: 'green', height: '100%' }} />
+      <Grid container item xs={8} justify="center" alignItems="center">
+        <Paper className={classes.paper} square>
+          <Tabs
+            className={classes.tabs}
+            classes={{ indicator: classes.indicator }}
+            value={tabIndex}
+            onChange={handleTabChange}
+            indicatorColor="primary"
+            variant="fullWidth"
+          >
+            <Tab classes={{ label: classes.label }} label="Login" />
+            <Tab classes={{ label: classes.label }} label="Sign Up" />
+          </Tabs>
+          {tabIndex === 0 && (
+            <Mutation
+              mutation={mutation.logIn}
+              onCompleted={() => history.push('/')}
+              onError={handleMutationError}
             >
-              <Tab classes={{ label: classes.label }} label="Login" />
-              <Tab classes={{ label: classes.label }} label="Sign Up" />
-            </Tabs>
-            {tabIndex === 0 && (
-              <Mutation
-                mutation={mutation.logIn}
-                onCompleted={() => history.push('/')}
-                onError={handleMutationError}
-              >
-                {login => (
-                  <SignInForm
-                    onSignIn={(email, password) => {
-                      setErrors([]);
-                      login({
-                        variables: { email, password },
-                        refetchQueries: [{ query: query.currentUser }],
-                        awaitRefetchQueries: true
-                      });
-                    }}
-                    errors={errors}
-                  />
-                )}
-              </Mutation>
-            )}
-            {tabIndex === 1 && (
-              <Mutation
-                mutation={mutation.signUp}
-                onCompleted={() => history.push('/')}
-                onError={handleMutationError}
-              >
-                {signup => (
-                  <SignUpForm
-                    onSignUp={(email, password, name) => {
-                      setErrors([]);
-                      signup({
-                        variables: { email, password, name },
-                        refetchQueries: [{ query: query.currentUser }],
-                        awaitRefetchQueries: true
-                      });
-                    }}
-                    errors={errors}
-                  />
-                )}
-              </Mutation>
-            )}
-          </Paper>
-        </Grid>
+              {login => (
+                <SignInForm
+                  onSignIn={(email, password) => {
+                    setErrors([]);
+                    login({
+                      variables: { email, password },
+                      refetchQueries: [{ query: query.currentUser }],
+                      awaitRefetchQueries: true
+                    });
+                  }}
+                  errors={errors}
+                />
+              )}
+            </Mutation>
+          )}
+          {tabIndex === 1 && (
+            <Mutation
+              mutation={mutation.signUp}
+              onCompleted={() => history.push('/')}
+              onError={handleMutationError}
+            >
+              {signup => (
+                <SignUpForm
+                  onSignUp={(email, password, name) => {
+                    setErrors([]);
+                    signup({
+                      variables: { email, password, name },
+                      refetchQueries: [{ query: query.currentUser }],
+                      awaitRefetchQueries: true
+                    });
+                  }}
+                  errors={errors}
+                />
+              )}
+            </Mutation>
+          )}
+        </Paper>
       </Grid>
-    </div>
+    </Grid>
   );
 });
