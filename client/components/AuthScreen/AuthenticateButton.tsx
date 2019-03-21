@@ -4,13 +4,12 @@ import Button, { ButtonProps } from '@material-ui/core/Button';
 
 const styles = createStyles({
   button: {
-    background: 'linear-gradient(45deg, #fe6b8b 3%, #ff8e53 90%)',
+    backgroundColor: '#3BACA3',
     borderRadius: '3px',
     border: 0,
     color: 'white',
     height: '48px',
-    padding: '0 30px',
-    boxShadow: '0 1px 5px 2px rgba(255, 105, 135, 0.3)'
+    padding: '0 30px'
   },
   buttonDisabled: {
     background: '#d4c9d7'
