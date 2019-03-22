@@ -53,6 +53,7 @@ const styles = (theme: Theme) =>
     modal: {
       overflow: 'scroll'
     },
+    settingBtn: { backgroundColor: '#3BACA3', '&:hover': { backgroundColor: '2a938b' } },
     sportBox: { width: '100%' },
     websites: {
       display: 'flex',
@@ -93,6 +94,7 @@ export default withWidth()(
                   {isWidthDown('xs', width) ? (
                     <Grid container item sm={3} xs={6} justify="flex-end">
                       <Fab
+                        className={classes.settingBtn}
                         color="primary"
                         aria-label="Settings"
                         size="medium"
@@ -151,6 +153,7 @@ export default withWidth()(
                   ) : (
                     <Grid container item sm={3} xs={12} justify="flex-end">
                       <Fab
+                        className={classes.settingBtn}
                         color="primary"
                         aria-label="Settings"
                         size="medium"

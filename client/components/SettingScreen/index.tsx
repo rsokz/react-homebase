@@ -19,7 +19,7 @@ const styles = (theme: Theme) =>
       padding: theme.spacing.unit * 2,
       minHeight: '100vh'
     },
-    title: {}
+    settingBtn: { backgroundColor: '#3BACA3', '&:hover': { backgroundColor: '2a938b' } }
   });
 
 interface Props extends WithStyles<typeof styles> {
@@ -45,6 +45,7 @@ export default withStyles(styles)(({ classes, onClose }: Props) => {
             <Grid container direction="column" spacing={40}>
               <Grid item container direction="row" justify="flex-end">
                 <Fab
+                  className={classes.settingBtn}
                   color="primary"
                   aria-label="Settings"
                   size="medium"
