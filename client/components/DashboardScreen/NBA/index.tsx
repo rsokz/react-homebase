@@ -20,9 +20,8 @@ const styles = (theme: Theme) =>
   createStyles({
     root: {
       width: '90%',
-      height: '36%',
+      height: '50%',
       overflow: 'auto',
-      marginLeft: '4%',
       backgroundColor: 'rgba(255, 255, 255, 0.95);'
     },
     divider: {

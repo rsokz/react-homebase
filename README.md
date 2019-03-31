@@ -1,15 +1,29 @@
-<img src="awesome-dashboard-icon.png" align="right" />
+<!-- PROJECT SHIELDS -->
 
-# Awesome Dashboard
+[![Contributors][contributors-shield]]()
+[![LinkedIn][linkedin-shield]][linkedin-url]
 
-> Customizable web dashboard that includes news, sports data, & more!
+<!-- PROJECT LOGO -->
+<br />
+<p align="center">
+  <a href="https://github.com/rsokz/awesome-dashboard">
+    <img src="logo.png" alt="Logo" width="92" height="90">
+  </a>
 
-[![NPM Version][npm-image]][npm-url]
-[![Build Status][travis-image]][travis-url]
+  <h3 align="center">Awesome Dashboard</h3>
 
-![](header.png)
+  <p align="center">
+    Customizable web dashboard that includes news, sports data, & more!
+    <br />
+    <a href="https://github.com/rsokz/awesome-dashboard"><strong>View Demo »</strong></a>
+  </p>
+</p>
 
-## Live Demo
+## About The Project
+
+![Screenshot](screenshot.png)
+
+Awesome dashboard is a feature-rich dashboard app, personalized to your liking. The dashboard screen displays product news of the day from Product Hunt, daily NBA games information, location weather, and 4 personalized website links. Additional personalization is available for things like background images.
 
 ## Features
 
@@ -64,8 +78,6 @@ yarn dev
 
 <!-- Markdown link & img dfn's -->
 
-[npm-image]: https://img.shields.io/npm/v/datadog-metrics.svg?style=flat-square
-[npm-url]: https://npmjs.org/package/datadog-metrics
-[travis-image]: https://img.shields.io/travis/dbader/node-datadog-metrics/master.svg?style=flat-square
-[travis-url]: https://travis-ci.org/dbader/node-datadog-metrics
-[wiki]: https://github.com/yourname/yourproject/wiki
+[contributors-shield]: https://img.shields.io/badge/contributors-1-orange.svg?style=flat-square
+[linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=flat-square&logo=linkedin&colorB=555
+[linkedin-url]: https://linkedin.com/in/rsokz

@@ -171,28 +171,13 @@ export default withWidth()(
                     xs={12}
                     container
                     justify="space-between"
-                    alignItems="center"
                     spacing={isWidthDown('sm', width) && 40}
                   >
                     <Grid container item md={6} sm={12} justify="center">
                       <ProductHunt />
                     </Grid>
-                    <Grid
-                      container
-                      item
-                      md={6}
-                      sm={12}
-                      alignItems="center"
-                      justify="flex-end"
-                      direction="column"
-                      spacing={24}
-                    >
-                      <Grid item className={classes.sportBox}>
-                        <NBA />
-                      </Grid>
-                      <Grid item className={classes.sportBox}>
-                        <NBA />
-                      </Grid>
+                    <Grid container item md={6} sm={12} alignItems="flex-start" justify="center">
+                      <NBA />
                     </Grid>
                   </Grid>
                 </Grid>
