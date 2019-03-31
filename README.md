@@ -6,7 +6,7 @@
 <!-- PROJECT LOGO -->
 <br />
 <p align="center">
-  <a href="https://github.com/rsokz/awesome-dashboard">
+  <a href="https://github.com/rsokz/awesome-dashboard" target="_blank">
     <img src="logo.png" alt="Logo" width="92" height="90">
   </a>
 
