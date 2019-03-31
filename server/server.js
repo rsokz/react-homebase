@@ -20,7 +20,7 @@ mongoose.Promise = global.Promise;
 
 // Connect to the mongoDB instance and log a message
 // on success or failure
-mongoose.connect(MONGO_URI);
+mongoose.connect(MONGO_URI, { useNewUrlParser: true });
 mongoose.connection
   .once('open', () => console.log('Connected to MongoLab instance.'))
   .on('error', error => console.log('Error connecting to MongoLab:', error));
@@ -70,12 +70,8 @@ app.use(webpackMiddleware(webpack(webpackConfig)));
 app.use(express.static(path.join(__dirname, '../client')));
 
 // Handles any requests that don't match the ones above
-app.get('*', function(_, res) {
-  res.sendFile(path.join(__dirname, '../client/index.html'), function(err) {
-    if (err) {
-      res.status(500).send(err);
-    }
-  });
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, '../client', 'index.html'));
 });
 
 module.exports = app;

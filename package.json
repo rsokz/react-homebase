@@ -1,14 +1,18 @@
 {
   "name": "awesome-dashboard",
   "version": "1.0.0",
+  "description": "Customizable web dashboard that includes news, sports data, & more!",
   "repository": {
     "type": "git",
     "url": "https://github.com/rsokz/awesome-dashboard.git"
   },
   "main": "index.js",
+  "author": "Rosty Sokolov",
+  "license": "MIT",
   "scripts": {
     "dev": "nodemon index.js --ignore client/",
-    "start": "node index.js"
+    "start": "node index.js",
+    "heroku-postbuild": "webpack -p"
   },
   "dependencies": {
     "@babel/core": "^7.0.0",
