@@ -11,8 +11,7 @@
   "license": "MIT",
   "scripts": {
     "dev": "nodemon index.js --ignore client/",
-    "start": "node index.js",
-    "heroku-postbuild": "webpack -p"
+    "start": "node index.js"
   },
   "dependencies": {
     "@babel/core": "^7.0.0",
