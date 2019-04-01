@@ -15,7 +15,7 @@ import { Mutation } from 'react-apollo';
 import * as mutation from '../../graphql/mutations';
 import * as query from '../../graphql/queries';
 import SignInForm from './SignInForm';
-import { SignUpForm } from './SignUpForm';
+import SignUpForm from './SignUpForm';
 import BackgroundImages from '../SettingScreen/images';
 import { generateGreeting } from '../DashboardScreen/utils/greeting';
 
