@@ -7,7 +7,7 @@
 <br />
 <p align="center">
   <a href="https://github.com/rsokz/awesome-dashboard" target="_blank">
-    <img src="logo.png" alt="Logo" width="92" height="90">
+    <img src="logo.png" alt="Logo" width="189" height="90">
   </a>
 
   <h3 align="center">Awesome Dashboard</h3>
