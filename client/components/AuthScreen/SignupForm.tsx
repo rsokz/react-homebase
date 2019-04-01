@@ -20,7 +20,7 @@ interface Props extends WithStyles<typeof styles> {
   errors: string[];
 }
 
-export default withStyles(styles)(({ classes, errors, onSignUp }: Props) => {
+export const SignUpForm = withStyles(styles)(({ classes, errors, onSignUp }: Props) => {
   const [email, setEmail] = useState('');
   const [name, setName] = useState('');
   const [password, setPassword] = useState('');
