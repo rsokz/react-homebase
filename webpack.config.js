@@ -1,11 +1,13 @@
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { CheckerPlugin } = require('awesome-typescript-loader');
+const path = require('path');
 
 module.exports = {
   entry: './client/index.js',
   output: {
-    path: '/',
+    path: path.join(__dirname, '/dist'),
+    publicPath: '/',
     filename: 'bundle.js'
   },
   resolve: {

@@ -11,7 +11,8 @@
   "license": "MIT",
   "scripts": {
     "dev": "nodemon index.js --ignore client/",
-    "start": "node index.js"
+    "start": "yarn build && node index.js",
+    "build": "rm -rf dist && webpack --mode production --config webpack.config.js"
   },
   "dependencies": {
     "@babel/core": "^7.0.0",
