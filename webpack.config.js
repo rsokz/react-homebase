@@ -28,14 +28,11 @@ module.exports = {
         exclude: /node_modules/
       },
       {
-        test: /\.(gif|png|jpe?g|svg)$/i,
+        test: /\.(png|jpe?g|gif)$/,
         use: [
-          'file-loader',
           {
-            loader: 'image-webpack-loader',
-            options: {
-              disable: true // webpack@2.x and newer
-            }
+            loader: 'file-loader',
+            options: {}
           }
         ]
       }
