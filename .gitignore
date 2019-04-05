@@ -12,7 +12,7 @@ yarn-error.log
 #
 .*/
 
-# build
+# production
 build/
 
 
