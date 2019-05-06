@@ -31,7 +31,7 @@ module.exports = {
         test: /\.(png|jpe?g|gif)$/,
         use: [
           {
-            loader: 'file-loader',
+            loader: require.resolve('file-loader') + '?name=../[path][name].[ext]',
             options: {}
           }
         ]
