@@ -66,6 +66,8 @@ yarn dev
 
 ## Built With
 
+![Built With](built_with.png)
+
 ## To-Do (v2)
 
 - [ ] Allow URL link for dashboard background image
