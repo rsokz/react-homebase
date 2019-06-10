@@ -27,8 +27,8 @@ Awesome dashboard is a feature-rich dashboard app, personalized to your liking. 
 
 > dev features
 
-- 100% function components with React Hooks
-- Fully TypeScript Client
+- 100% functional components with React Hooks
+- Fully TypeScript client
 - Graphql & Mongo
 - Passport authentication
 - Express server
