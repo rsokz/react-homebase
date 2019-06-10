@@ -14,8 +14,6 @@
 
   <p align="center">
     Customizable web dashboard that includes news, sports data, & more!
-    <br />
-    <a href="https://github.com/rsokz/awesome-dashboard"><strong>View Demo »</strong></a>
   </p>
 </p>
 
@@ -29,8 +27,8 @@ Awesome dashboard is a feature-rich dashboard app, personalized to your liking. 
 
 > dev features
 
-- 100% function components with React Hooks
-- Fully TypeScript Client
+- 100% functional components with React Hooks
+- Fully TypeScript client
 - Graphql & Mongo
 - Passport authentication
 - Express server
@@ -67,6 +65,8 @@ yarn dev
 ```
 
 ## Built With
+
+![Built With](built_with.png)
 
 ## To-Do (v2)
 
