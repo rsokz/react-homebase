@@ -14,8 +14,6 @@
 
   <p align="center">
     Customizable web dashboard that includes news, sports data, & more!
-    <br />
-    <a href="https://github.com/rsokz/awesome-dashboard"><strong>View Demo »</strong></a>
   </p>
 </p>
 
