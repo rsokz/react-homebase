@@ -21,7 +21,7 @@
 
 ![Screenshot](screenshot.png)
 
-Awesome dashboard is a feature-rich dashboard app, personalized to your liking. The dashboard screen displays product news of the day from Product Hunt, daily NBA games information, location weather, and 4 personalized website links. Additional personalization is available for things like background images.
+Homebase dashboard is a feature-rich dashboard app, personalized to your liking. The dashboard screen displays product news of the day from Product Hunt, daily NBA games information, location weather, and 4 personalized website links. Additional personalization is available for things like background images.
 
 ## Features
 
@@ -47,7 +47,7 @@ Awesome dashboard is a feature-rich dashboard app, personalized to your liking. 
 Clone
 
 ```sh
-git clone https://github.com/rsokz/awesome-dashboard.git
+git clone https://github.com/rsokz/react-awesome-dashboard.git
 ```
 
 Setup
