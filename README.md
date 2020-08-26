@@ -6,7 +6,7 @@
 <!-- PROJECT LOGO -->
 <br />
 <p align="center">
-  <a href="https://github.com/rsokz/react-awesome-dashboard" target="_blank">
+  <a href="https://github.com/rsokz/react-homebase" target="_blank">
     <img src="logo.png" alt="Logo" width="189" height="90">
   </a>
 
@@ -47,7 +47,7 @@ Homebase dashboard is a feature-rich dashboard app, personalized to your liking.
 Clone
 
 ```sh
-git clone https://github.com/rsokz/react-awesome-dashboard.git
+git clone https://github.com/rsokz/react-homebase.git
 ```
 
 Setup
