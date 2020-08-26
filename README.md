@@ -6,11 +6,11 @@
 <!-- PROJECT LOGO -->
 <br />
 <p align="center">
-  <a href="https://github.com/rsokz/awesome-dashboard" target="_blank">
+  <a href="https://github.com/rsokz/react-awesome-dashboard" target="_blank">
     <img src="logo.png" alt="Logo" width="189" height="90">
   </a>
 
-  <h3 align="center">Awesome Dashboard</h3>
+  <h3 align="center">Homebase</h3>
 
   <p align="center">
     Customizable web dashboard that includes news, sports data, & more!
