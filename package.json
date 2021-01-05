@@ -34,7 +34,7 @@
     "apollo": "^2.5.1",
     "apollo-boost": "^0.1.27",
     "awesome-typescript-loader": "^5.2.1",
-    "axios": "^0.18.0",
+    "axios": "^0.21.1",
     "babel-loader": "^8.0.5",
     "babel-preset-airbnb": "^3.2.0",
     "bcrypt-nodejs": "0.0.3",
