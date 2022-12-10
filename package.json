@@ -42,7 +42,7 @@
     "btoa": "^1.2.1",
     "connect-mongo": "^2.0.3",
     "dotenv": "^7.0.0",
-    "express": "^4.16.4",
+    "express": "^4.17.3",
     "express-graphql": "^0.7.1",
     "express-session": "^1.15.6",
     "file-loader": "^3.0.1",
